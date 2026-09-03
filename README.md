@@ -1,6 +1,16 @@
 # XP-Educação-Arquiteto-de-Software
 Fundamentos de Arquitetura de Software. Requisitos Arquiteturais e Modelagem Arquitetural. Design Patterns, Estilos e Padrões Arquiteturais. Principais Arquiteturas de Software da Atualidade.
 
+## Projetos deste repositório
+
+| Projeto | Descrição |
+|---|---|
+| [`aruitetura-api-final/`](aruitetura-api-final) | API REST de clientes em FastAPI, padrão MVC com PostgreSQL — desafio final do bootcamp |
+| [`multiagent_prototype/`](multiagent_prototype) | Protótipo de arquitetura de referência multiagente com LangGraph, memória híbrida e OpenTelemetry (ADRs #001–#003) |
+| [`graphrag-hybrid-agentic/`](graphrag-hybrid-agentic) | GraphRAG (Local, Global, DRIFT, LazyGraphRAG) + busca híbrida (BM25 + denso, RRF, reranking, MMR) com roteamento adaptativo e avaliação medida — roda sem dependências (ADRs #004–#008) |
+
+---
+
 # Clientes API
 
 API REST para gestao de clientes, construida com **Python/FastAPI** no padrao arquitetural **MVC**, com persistencia em **PostgreSQL**.

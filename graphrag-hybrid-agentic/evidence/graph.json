@@ -1,0 +1,1617 @@
+{
+  "entities": [
+    {
+      "name": "CQRS",
+      "type": "padrao",
+      "description": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**.",
+      "mentions": 7,
+      "chunks": [
+        "01-cqrs#c0",
+        "01-cqrs#c1",
+        "03-outbox#c0"
+      ]
+    },
+    {
+      "name": "consistencia eventual",
+      "type": "conceito",
+      "description": "O custo e' operacional — rede, versionamento de contrato, observabilidade distribuida e consistencia eventual entram todos de uma vez.",
+      "mentions": 2,
+      "chunks": [
+        "01-cqrs#c0",
+        "05-microservicos#c0"
+      ]
+    },
+    {
+      "name": "Event Sourcing",
+      "type": "conceito",
+      "description": "Interfaces que exibem o resultado imediato de um comando precisam de leitura pos-escrita explicita, senao o usuario ve dado velho.  **CQRS** combina naturalmente com **Event Sourcing**, porque os eventos ja sao o mecanismo de propagacao para as projecoes.",
+      "mentions": 4,
+      "chunks": [
+        "01-cqrs#c0",
+        "02-event-sourcing#c0",
+        "03-outbox#c0"
+      ]
+    },
+    {
+      "name": "Outbox",
+      "type": "padrao",
+      "description": "Mas os dois padroes sao independentes: e' possivel aplicar **CQRS** sobre um banco relacional classico usando views materializadas e o padrao **Outbox** para publicar as mudancas.",
+      "mentions": 8,
+      "chunks": [
+        "01-cqrs#c0",
+        "01-cqrs#c1",
+        "02-event-sourcing#c1",
+        "03-outbox#c0",
+        "05-microservicos#c0",
+        "05-microservicos#c1"
+      ]
+    },
+    {
+      "name": "PostgreSQL",
+      "type": "tecnologia",
+      "description": "O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**.",
+      "mentions": 3,
+      "chunks": [
+        "02-event-sourcing#c0",
+        "02-event-sourcing#c1",
+        "03-outbox#c0"
+      ]
+    },
+    {
+      "name": "Kafka",
+      "type": "tecnologia",
+      "description": "Na **Saga** coreografada, cada servico reage a eventos publicados no **Kafka** e nao existe coordenador; o acoplamento e' baixo, mas o fluxo fica implicito e dificil de depurar.",
+      "mentions": 5,
+      "chunks": [
+        "02-event-sourcing#c0",
+        "02-event-sourcing#c1",
+        "03-outbox#c0",
+        "04-saga#c0",
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "Event Store",
+      "type": "conceito",
+      "description": "O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**.",
+      "mentions": 2,
+      "chunks": [
+        "02-event-sourcing#c0",
+        "02-event-sourcing#c1"
+      ]
+    },
+    {
+      "name": "Change Data Capture",
+      "type": "conceito",
+      "description": "Cada rota migrada leva consigo seus dados, o que exige **Outbox** ou **Change Data Capture** durante a coexistencia.",
+      "mentions": 3,
+      "chunks": [
+        "03-outbox#c0",
+        "05-microservicos#c0",
+        "05-microservicos#c1"
+      ]
+    },
+    {
+      "name": "Microservicos",
+      "type": "conceito",
+      "description": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**.",
+      "mentions": 4,
+      "chunks": [
+        "03-outbox#c0",
+        "05-microservicos#c0",
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "Saga",
+      "type": "padrao",
+      "description": "Uma **Saga** coordena uma transacao de negocio que atravessa varios servicos, substituindo o commit distribuido por uma sequencia de transacoes locais com compensacoes.",
+      "mentions": 4,
+      "chunks": [
+        "04-saga#c0"
+      ]
+    },
+    {
+      "name": "LangGraph",
+      "type": "tecnologia",
+      "description": "Em sistemas agenticos, o orquestrador de agentes reproduz a variante orquestrada — o **LangGraph** e' essencialmente uma maquina de estados com compensacao manual.",
+      "mentions": 1,
+      "chunks": [
+        "04-saga#c0"
+      ]
+    },
+    {
+      "name": "Monolito Modular",
+      "type": "conceito",
+      "description": "O **Monolito Modular** entrega grande parte do beneficio de fronteira sem o custo de rede.",
+      "mentions": 1,
+      "chunks": [
+        "05-microservicos#c0"
+      ]
+    },
+    {
+      "name": "Strangler Fig",
+      "type": "padrao",
+      "description": "A migracao de monolito para **Microservicos** costuma usar o padrao **Strangler Fig**: um proxy roteia gradualmente rotas do sistema antigo para o novo.",
+      "mentions": 1,
+      "chunks": [
+        "05-microservicos#c0"
+      ]
+    },
+    {
+      "name": "Circuit Breaker",
+      "type": "padrao",
+      "description": "O **Circuit Breaker** interrompe chamadas a uma dependencia que esta falhando, evitando que timeouts acumulados esgotem o pool de conexoes do chamador.",
+      "mentions": 3,
+      "chunks": [
+        "05-microservicos#c1",
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "Bulkhead",
+      "type": "conceito",
+      "description": "O **Bulkhead** isola recursos por dependencia — pools separados garantem que a lentidao de um servico nao consuma toda a capacidade do processo.",
+      "mentions": 2,
+      "chunks": [
+        "05-microservicos#c1",
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "Resiliencia",
+      "type": "conceito",
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**.",
+      "mentions": 1,
+      "chunks": [
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "retry",
+      "type": "conceito",
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**.",
+      "mentions": 3,
+      "chunks": [
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "timeout",
+      "type": "conceito",
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**.",
+      "mentions": 2,
+      "chunks": [
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "LLM",
+      "type": "tecnica",
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**.",
+      "mentions": 4,
+      "chunks": [
+        "06-resiliencia#c0",
+        "07-graphrag#c0",
+        "12-avaliacao#c0"
+      ]
+    },
+    {
+      "name": "Ollama",
+      "type": "tecnologia",
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**.",
+      "mentions": 1,
+      "chunks": [
+        "06-resiliencia#c0"
+      ]
+    },
+    {
+      "name": "RAG",
+      "type": "tecnica",
+      "description": "Em **GraphRAG** o **MMR** importa mais que em **RAG** plano, porque a expansao pelo grafo traz varios trechos quase identicos sobre a mesma entidade e o orcamento de contexto se esgota antes de cobrir a pergunta inteira.",
+      "mentions": 3,
+      "chunks": [
+        "06-resiliencia#c0",
+        "10-reranking#c1",
+        "11-rag-agentico#c0"
+      ]
+    },
+    {
+      "name": "GraphRAG",
+      "type": "tecnica",
+      "description": "Em **GraphRAG** o **MMR** importa mais que em **RAG** plano, porque a expansao pelo grafo traz varios trechos quase identicos sobre a mesma entidade e o orcamento de contexto se esgota antes de cobrir a pergunta inteira.",
+      "mentions": 6,
+      "chunks": [
+        "07-graphrag#c0",
+        "08-drift-lazy#c0",
+        "10-reranking#c1",
+        "12-avaliacao#c0",
+        "12-avaliacao#c1"
+      ]
+    },
+    {
+      "name": "Leiden",
+      "type": "tecnica",
+      "description": "A ingestao extrai entidades e relacoes de cada text unit com um LLM, consolida entidades equivalentes e detecta comunidades com o algoritmo **Leiden**.",
+      "mentions": 1,
+      "chunks": [
+        "07-graphrag#c0"
+      ]
+    },
+    {
+      "name": "Local Search",
+      "type": "conceito",
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**.",
+      "mentions": 3,
+      "chunks": [
+        "07-graphrag#c0",
+        "08-drift-lazy#c0",
+        "11-rag-agentico#c0"
+      ]
+    },
+    {
+      "name": "Global Search",
+      "type": "conceito",
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**.",
+      "mentions": 2,
+      "chunks": [
+        "07-graphrag#c0",
+        "11-rag-agentico#c0"
+      ]
+    },
+    {
+      "name": "Community Reports",
+      "type": "conceito",
+      "description": "O **Global Search** ignora entidades individuais e faz map-reduce sobre os **Community Reports**, respondendo perguntas tematicas do tipo \"quais sao os temas centrais do corpus\".",
+      "mentions": 4,
+      "chunks": [
+        "07-graphrag#c0",
+        "08-drift-lazy#c0"
+      ]
+    },
+    {
+      "name": "DRIFT Search",
+      "type": "tecnica",
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**.",
+      "mentions": 6,
+      "chunks": [
+        "08-drift-lazy#c0",
+        "08-drift-lazy#c1",
+        "11-rag-agentico#c0"
+      ]
+    },
+    {
+      "name": "LazyGraphRAG",
+      "type": "tecnica",
+      "description": "A escolha entre **DRIFT Search** e **LazyGraphRAG** e' uma escolha de onde pagar: indexacao cara e consulta barata, ou indexacao barata e consulta cara.",
+      "mentions": 4,
+      "chunks": [
+        "08-drift-lazy#c0",
+        "08-drift-lazy#c1",
+        "12-avaliacao#c0",
+        "12-avaliacao#c1"
+      ]
+    },
+    {
+      "name": "Microsoft Research",
+      "type": "conceito",
+      "description": "O resultado publicado pela Microsoft Research reduz o custo de indexacao em cerca de tres ordens de grandeza mantendo a qualidade de resposta.",
+      "mentions": 2,
+      "chunks": [
+        "08-drift-lazy#c0",
+        "08-drift-lazy#c1"
+      ]
+    },
+    {
+      "name": "Busca Hibrida",
+      "type": "conceito",
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**.",
+      "mentions": 2,
+      "chunks": [
+        "09-busca-hibrida#c0",
+        "11-rag-agentico#c0"
+      ]
+    },
+    {
+      "name": "BM25",
+      "type": "tecnica",
+      "description": "A perna lexical usa **BM25**, que acerta termos raros, codigos e nomes proprios exatos.",
+      "mentions": 2,
+      "chunks": [
+        "09-busca-hibrida#c0"
+      ]
+    },
+    {
+      "name": "HNSW",
+      "type": "tecnica",
+      "description": "A perna densa usa embeddings sobre um indice **HNSW**, que acerta parafrase e sinonimo.",
+      "mentions": 1,
+      "chunks": [
+        "09-busca-hibrida#c0"
+      ]
+    },
+    {
+      "name": "RRF",
+      "type": "tecnica",
+      "description": "A fusao padrao e' a **RRF** (Reciprocal Rank Fusion), que soma o inverso da posicao de cada documento em cada lista com uma constante de amortecimento, tipicamente 60.",
+      "mentions": 4,
+      "chunks": [
+        "09-busca-hibrida#c0"
+      ]
+    },
+    {
+      "name": "Combinacao Convexa",
+      "type": "conceito",
+      "description": "A alternativa e' a **Combinacao Convexa**, que normaliza os scores de cada perna e aplica um peso alpha.",
+      "mentions": 1,
+      "chunks": [
+        "09-busca-hibrida#c0"
+      ]
+    },
+    {
+      "name": "Reranker",
+      "type": "tecnica",
+      "description": "O **Reranker** e' um cross-encoder que le a consulta e o documento juntos, produzindo um score de relevancia muito mais preciso que o bi-encoder da busca vetorial.",
+      "mentions": 2,
+      "chunks": [
+        "10-reranking#c0"
+      ]
+    },
+    {
+      "name": "Recall",
+      "type": "metrica",
+      "description": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos.",
+      "mentions": 4,
+      "chunks": [
+        "10-reranking#c0",
+        "12-avaliacao#c0"
+      ]
+    },
+    {
+      "name": "nDCG",
+      "type": "metrica",
+      "description": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos.",
+      "mentions": 5,
+      "chunks": [
+        "10-reranking#c0",
+        "12-avaliacao#c0"
+      ]
+    },
+    {
+      "name": "MMR",
+      "type": "tecnica",
+      "description": "Em **GraphRAG** o **MMR** importa mais que em **RAG** plano, porque a expansao pelo grafo traz varios trechos quase identicos sobre a mesma entidade e o orcamento de contexto se esgota antes de cobrir a pergunta inteira.",
+      "mentions": 3,
+      "chunks": [
+        "10-reranking#c0",
+        "10-reranking#c1"
+      ]
+    },
+    {
+      "name": "RAG Agentico",
+      "type": "tecnica",
+      "description": "**RAG Agentico** substitui o pipeline de uma passada por um ciclo: o agente planeja, recupera, critica a propria saida e decide se recupera de novo.",
+      "mentions": 1,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ]
+    },
+    {
+      "name": "Roteamento Adaptativo",
+      "type": "conceito",
+      "description": "O conjunto de avaliacao deve conter perguntas dos quatro tipos que o **Roteamento Adaptativo** distingue, senao o roteador e' medido apenas no caso facil.",
+      "mentions": 2,
+      "chunks": [
+        "11-rag-agentico#c0",
+        "12-avaliacao#c1"
+      ]
+    },
+    {
+      "name": "Decomposicao de Consulta",
+      "type": "conceito",
+      "description": "A **Decomposicao de Consulta** quebra a pergunta em sub-perguntas independentes, recuperadas em paralelo e sintetizadas ao final.",
+      "mentions": 2,
+      "chunks": [
+        "11-rag-agentico#c0",
+        "11-rag-agentico#c1"
+      ]
+    },
+    {
+      "name": "Critico",
+      "type": "conceito",
+      "description": "O **Critico** fecha o ciclo verificando fundamentacao e cobertura; quando reprova, o planejador amplia o top-k, troca de estrategia ou gera novas sub-perguntas.",
+      "mentions": 1,
+      "chunks": [
+        "11-rag-agentico#c1"
+      ]
+    },
+    {
+      "name": "Fundamentacao",
+      "type": "conceito",
+      "description": "O **Critico** fecha o ciclo verificando fundamentacao e cobertura; quando reprova, o planejador amplia o top-k, troca de estrategia ou gera novas sub-perguntas.",
+      "mentions": 2,
+      "chunks": [
+        "11-rag-agentico#c1",
+        "12-avaliacao#c0"
+      ]
+    },
+    {
+      "name": "MRR",
+      "type": "metrica",
+      "description": "O **MRR** (Mean Reciprocal Rank) complementa quando existe uma unica resposta certa, medindo a posicao do primeiro acerto.",
+      "mentions": 2,
+      "chunks": [
+        "12-avaliacao#c0"
+      ]
+    },
+    {
+      "name": "Latencia",
+      "type": "metrica",
+      "description": "Toda comparacao de estrategia precisa incluir custo e **Latencia**, nao so qualidade.",
+      "mentions": 1,
+      "chunks": [
+        "12-avaliacao#c0"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source": "CQRS",
+      "target": "Event Sourcing",
+      "predicate": "combina",
+      "weight": 2.0,
+      "chunks": [
+        "01-cqrs#c0",
+        "03-outbox#c0"
+      ],
+      "description": "Interfaces que exibem o resultado imediato de um comando precisam de leitura pos-escrita explicita, senao o usuario ve dado velho.  **CQRS** combina naturalmente com **Event Sourcing**, porque os eventos ja sao o mecanismo de propagacao para as projecoes."
+    },
+    {
+      "source": "CQRS",
+      "target": "Outbox",
+      "predicate": "banco",
+      "weight": 3.0,
+      "chunks": [
+        "01-cqrs#c0",
+        "01-cqrs#c1",
+        "03-outbox#c0"
+      ],
+      "description": "Mas os dois padroes sao independentes: e' possivel aplicar **CQRS** sobre um banco relacional classico usando views materializadas e o padrao **Outbox** para publicar as mudancas."
+    },
+    {
+      "source": "Event Store",
+      "target": "Kafka",
+      "predicate": "normalmente",
+      "weight": 2.0,
+      "chunks": [
+        "02-event-sourcing#c0",
+        "02-event-sourcing#c1"
+      ],
+      "description": "O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**."
+    },
+    {
+      "source": "Event Store",
+      "target": "PostgreSQL",
+      "predicate": "normalmente",
+      "weight": 2.0,
+      "chunks": [
+        "02-event-sourcing#c0",
+        "02-event-sourcing#c1"
+      ],
+      "description": "O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**."
+    },
+    {
+      "source": "Kafka",
+      "target": "PostgreSQL",
+      "predicate": "log",
+      "weight": 2.0,
+      "chunks": [
+        "02-event-sourcing#c0",
+        "02-event-sourcing#c1"
+      ],
+      "description": "O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**."
+    },
+    {
+      "source": "Change Data Capture",
+      "target": "PostgreSQL",
+      "predicate": "log",
+      "weight": 1.0,
+      "chunks": [
+        "03-outbox#c0"
+      ],
+      "description": "A leitura pode usar polling ou **Change Data Capture** sobre o log de replicacao do **PostgreSQL**."
+    },
+    {
+      "source": "CQRS",
+      "target": "Microservicos",
+      "predicate": "confiavei",
+      "weight": 1.0,
+      "chunks": [
+        "03-outbox#c0"
+      ],
+      "description": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**."
+    },
+    {
+      "source": "Event Sourcing",
+      "target": "Microservicos",
+      "predicate": "proje",
+      "weight": 1.0,
+      "chunks": [
+        "03-outbox#c0"
+      ],
+      "description": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**."
+    },
+    {
+      "source": "Event Sourcing",
+      "target": "Outbox",
+      "predicate": "pre-requisito",
+      "weight": 1.0,
+      "chunks": [
+        "03-outbox#c0"
+      ],
+      "description": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**."
+    },
+    {
+      "source": "Microservicos",
+      "target": "Outbox",
+      "predicate": "pre-requisito",
+      "weight": 1.0,
+      "chunks": [
+        "03-outbox#c0"
+      ],
+      "description": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**."
+    },
+    {
+      "source": "Kafka",
+      "target": "Saga",
+      "predicate": "coreografada",
+      "weight": 1.0,
+      "chunks": [
+        "04-saga#c0"
+      ],
+      "description": "Na **Saga** coreografada, cada servico reage a eventos publicados no **Kafka** e nao existe coordenador; o acoplamento e' baixo, mas o fluxo fica implicito e dificil de depurar."
+    },
+    {
+      "source": "Microservicos",
+      "target": "Strangler Fig",
+      "predicate": "costuma",
+      "weight": 1.0,
+      "chunks": [
+        "05-microservicos#c0"
+      ],
+      "description": "A migracao de monolito para **Microservicos** costuma usar o padrao **Strangler Fig**: um proxy roteia gradualmente rotas do sistema antigo para o novo."
+    },
+    {
+      "source": "Change Data Capture",
+      "target": "Outbox",
+      "predicate": "relaciona-se com",
+      "weight": 2.0,
+      "chunks": [
+        "05-microservicos#c0",
+        "05-microservicos#c1"
+      ],
+      "description": "Cada rota migrada leva consigo seus dados, o que exige **Outbox** ou **Change Data Capture** durante a coexistencia."
+    },
+    {
+      "source": "Bulkhead",
+      "target": "Circuit Breaker",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "05-microservicos#c1"
+      ],
+      "description": "O **Circuit Breaker** e o **Bulkhead** tornam-se obrigatorios: em rede, a falha parcial e' o estado normal."
+    },
+    {
+      "source": "Microservicos",
+      "target": "Resiliencia",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**."
+    },
+    {
+      "source": "Microservicos",
+      "target": "retry",
+      "predicate": "backoff",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**."
+    },
+    {
+      "source": "Microservicos",
+      "target": "timeout",
+      "predicate": "agressivo",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**."
+    },
+    {
+      "source": "Resiliencia",
+      "target": "retry",
+      "predicate": "backoff",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**."
+    },
+    {
+      "source": "Resiliencia",
+      "target": "timeout",
+      "predicate": "agressivo",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**."
+    },
+    {
+      "source": "retry",
+      "target": "timeout",
+      "predicate": "agressivo",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**."
+    },
+    {
+      "source": "Kafka",
+      "target": "retry",
+      "predicate": "idempot",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Retry sem idempotencia duplica efeitos — motivo pelo qual consumidores de **Kafka** precisam de chave de deduplicacao."
+    },
+    {
+      "source": "Circuit Breaker",
+      "target": "LLM",
+      "predicate": "timeout",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "Circuit Breaker",
+      "target": "Ollama",
+      "predicate": "provedor",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "Circuit Breaker",
+      "target": "RAG",
+      "predicate": "agentico",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "Circuit Breaker",
+      "target": "timeout",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "LLM",
+      "target": "Ollama",
+      "predicate": "timeout",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "LLM",
+      "target": "RAG",
+      "predicate": "agentico",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "LLM",
+      "target": "timeout",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "Ollama",
+      "target": "RAG",
+      "predicate": "agentico",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "Ollama",
+      "target": "timeout",
+      "predicate": "circuit",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "RAG",
+      "target": "timeout",
+      "predicate": "agentico",
+      "weight": 1.0,
+      "chunks": [
+        "06-resiliencia#c0"
+      ],
+      "description": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**."
+    },
+    {
+      "source": "LLM",
+      "target": "Leiden",
+      "predicate": "consolida",
+      "weight": 1.0,
+      "chunks": [
+        "07-graphrag#c0"
+      ],
+      "description": "A ingestao extrai entidades e relacoes de cada text unit com um LLM, consolida entidades equivalentes e detecta comunidades com o algoritmo **Leiden**."
+    },
+    {
+      "source": "Community Reports",
+      "target": "Global Search",
+      "predicate": "ignora",
+      "weight": 1.0,
+      "chunks": [
+        "07-graphrag#c0"
+      ],
+      "description": "O **Global Search** ignora entidades individuais e faz map-reduce sobre os **Community Reports**, respondendo perguntas tematicas do tipo \"quais sao os temas centrais do corpus\"."
+    },
+    {
+      "source": "GraphRAG",
+      "target": "LLM",
+      "predicate": "custo",
+      "weight": 1.0,
+      "chunks": [
+        "07-graphrag#c0"
+      ],
+      "description": "O gargalo do **GraphRAG** e' o custo de indexacao: uma chamada de LLM por chunk para extracao, mais uma por comunidade para o relatorio."
+    },
+    {
+      "source": "DRIFT Search",
+      "target": "GraphRAG",
+      "predicate": "search",
+      "weight": 2.0,
+      "chunks": [
+        "08-drift-lazy#c0"
+      ],
+      "description": "O **DRIFT Search** combina os dois modos do **GraphRAG** numa unica consulta."
+    },
+    {
+      "source": "Community Reports",
+      "target": "LazyGraphRAG",
+      "predicate": "ataca",
+      "weight": 1.0,
+      "chunks": [
+        "08-drift-lazy#c0"
+      ],
+      "description": "O **LazyGraphRAG** ataca o custo pelo outro lado: nao gera **Community Reports** na ingestao."
+    },
+    {
+      "source": "DRIFT Search",
+      "target": "LazyGraphRAG",
+      "predicate": "search",
+      "weight": 2.0,
+      "chunks": [
+        "08-drift-lazy#c1"
+      ],
+      "description": "A escolha entre **DRIFT Search** e **LazyGraphRAG** e' uma escolha de onde pagar: indexacao cara e consulta barata, ou indexacao barata e consulta cara."
+    },
+    {
+      "source": "BM25",
+      "target": "RRF",
+      "predicate": "imune",
+      "weight": 1.0,
+      "chunks": [
+        "09-busca-hibrida#c0"
+      ],
+      "description": "Por operar sobre posicao e nao sobre score, a **RRF** e' imune a escalas incomparaveis entre **BM25** e similaridade de cosseno."
+    },
+    {
+      "source": "Recall",
+      "target": "Reranker",
+      "predicate": "aparece",
+      "weight": 1.0,
+      "chunks": [
+        "10-reranking#c0"
+      ],
+      "description": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos."
+    },
+    {
+      "source": "Recall",
+      "target": "nDCG",
+      "predicate": "nao",
+      "weight": 6.0,
+      "chunks": [
+        "10-reranking#c0",
+        "12-avaliacao#c0"
+      ],
+      "description": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos."
+    },
+    {
+      "source": "Reranker",
+      "target": "nDCG",
+      "predicate": "aparece",
+      "weight": 1.0,
+      "chunks": [
+        "10-reranking#c0"
+      ],
+      "description": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos."
+    },
+    {
+      "source": "GraphRAG",
+      "target": "MMR",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "10-reranking#c1"
+      ],
+      "description": "Em **GraphRAG** o **MMR** importa mais que em **RAG** plano, porque a expansao pelo grafo traz varios trechos quase identicos sobre a mesma entidade e o orcamento de contexto se esgota antes de cobrir a pergunta inteira."
+    },
+    {
+      "source": "GraphRAG",
+      "target": "RAG",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "10-reranking#c1"
+      ],
+      "description": "Em **GraphRAG** o **MMR** importa mais que em **RAG** plano, porque a expansao pelo grafo traz varios trechos quase identicos sobre a mesma entidade e o orcamento de contexto se esgota antes de cobrir a pergunta inteira."
+    },
+    {
+      "source": "MMR",
+      "target": "RAG",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "10-reranking#c1"
+      ],
+      "description": "Em **GraphRAG** o **MMR** importa mais que em **RAG** plano, porque a expansao pelo grafo traz varios trechos quase identicos sobre a mesma entidade e o orcamento de contexto se esgota antes de cobrir a pergunta inteira."
+    },
+    {
+      "source": "RAG",
+      "target": "RAG Agentico",
+      "predicate": "relaciona-se com",
+      "weight": 1.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "**RAG Agentico** substitui o pipeline de uma passada por um ciclo: o agente planeja, recupera, critica a propria saida e decide se recupera de novo."
+    },
+    {
+      "source": "Busca Hibrida",
+      "target": "DRIFT Search",
+      "predicate": "direta",
+      "weight": 2.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**."
+    },
+    {
+      "source": "Busca Hibrida",
+      "target": "Global Search",
+      "predicate": "direta",
+      "weight": 1.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**."
+    },
+    {
+      "source": "Busca Hibrida",
+      "target": "Local Search",
+      "predicate": "direta",
+      "weight": 1.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**."
+    },
+    {
+      "source": "DRIFT Search",
+      "target": "Global Search",
+      "predicate": "pergunta",
+      "weight": 2.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**."
+    },
+    {
+      "source": "DRIFT Search",
+      "target": "Local Search",
+      "predicate": "grafo",
+      "weight": 2.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**."
+    },
+    {
+      "source": "Global Search",
+      "target": "Local Search",
+      "predicate": "grafo",
+      "weight": 1.0,
+      "chunks": [
+        "11-rag-agentico#c0"
+      ],
+      "description": "Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**."
+    },
+    {
+      "source": "Critico",
+      "target": "Fundamentacao",
+      "predicate": "fecha",
+      "weight": 1.0,
+      "chunks": [
+        "11-rag-agentico#c1"
+      ],
+      "description": "O **Critico** fecha o ciclo verificando fundamentacao e cobertura; quando reprova, o planejador amplia o top-k, troca de estrategia ou gera novas sub-perguntas."
+    },
+    {
+      "source": "LLM",
+      "target": "nDCG",
+      "predicate": "custando",
+      "weight": 1.0,
+      "chunks": [
+        "12-avaliacao#c0"
+      ],
+      "description": "Uma estrategia que ganha dois pontos de **nDCG** custando cinco chamadas de LLM a mais por consulta pode ser a escolha errada."
+    },
+    {
+      "source": "GraphRAG",
+      "target": "LazyGraphRAG",
+      "predicate": "classico",
+      "weight": 2.0,
+      "chunks": [
+        "12-avaliacao#c0",
+        "12-avaliacao#c1"
+      ],
+      "description": "E' exatamente esse trade-off que separa **GraphRAG** classico de **LazyGraphRAG**."
+    }
+  ],
+  "communities": {
+    "0": [
+      {
+        "community_id": "c0-0",
+        "level": 0,
+        "members": [
+          "Bulkhead",
+          "Circuit Breaker",
+          "LLM",
+          "Leiden",
+          "MMR",
+          "Ollama",
+          "RAG",
+          "RAG Agentico",
+          "timeout"
+        ],
+        "chunk_ids": [
+          "05-microservicos#c1",
+          "06-resiliencia#c0",
+          "07-graphrag#c0",
+          "12-avaliacao#c0",
+          "10-reranking#c0",
+          "10-reranking#c1",
+          "11-rag-agentico#c0"
+        ],
+        "parent": "c1-0",
+        "title": "LLM / RAG / timeout",
+        "summary": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**. **GraphRAG** indexa um corpus construindo um grafo de conhecimento antes de responder. O **Circuit Breaker** e o **Bulkhead** tornam-se obrigatorios: em rede, a falha parcial e' o estado normal.",
+        "findings": [
+          "Bulkhead relaciona-se com Circuit Breaker",
+          "Circuit Breaker timeout LLM",
+          "Circuit Breaker provedor Ollama",
+          "Circuit Breaker agentico RAG",
+          "Circuit Breaker relaciona-se com timeout"
+        ],
+        "rank": 35.0
+      },
+      {
+        "community_id": "c0-1",
+        "level": 0,
+        "members": [
+          "CQRS",
+          "Change Data Capture",
+          "Event Sourcing",
+          "Microservicos",
+          "Outbox",
+          "Resiliencia",
+          "Strangler Fig",
+          "retry"
+        ],
+        "chunk_ids": [
+          "01-cqrs#c0",
+          "01-cqrs#c1",
+          "03-outbox#c0",
+          "05-microservicos#c0",
+          "05-microservicos#c1",
+          "02-event-sourcing#c0",
+          "06-resiliencia#c0",
+          "02-event-sourcing#c1"
+        ],
+        "parent": "c1-0",
+        "title": "Microservicos / Outbox / CQRS",
+        "summary": "Consumidores precisam ser idempotentes, tipicamente por chave de deduplicacao.  **Outbox** e' pre-requisito pratico para **Event Sourcing** e para projecoes de **CQRS** confiaveis em qualquer arquitetura de **Microservicos**. **Microservicos** decompoem o sistema em servicos independentes com banco proprio e ciclo de deploy autonomo. Cada rota migrada leva consigo seus dados, o que exige **Outbox** ou **Change Data Capture** durante a coexistencia.",
+        "findings": [
+          "CQRS banco Outbox",
+          "CQRS combina Event Sourcing",
+          "Change Data Capture relaciona-se com Outbox",
+          "CQRS confiavei Microservicos",
+          "Event Sourcing proje Microservicos"
+        ],
+        "rank": 35.0
+      },
+      {
+        "community_id": "c0-2",
+        "level": 0,
+        "members": [
+          "Busca Hibrida",
+          "Community Reports",
+          "DRIFT Search",
+          "Global Search",
+          "GraphRAG",
+          "LazyGraphRAG",
+          "Local Search"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0",
+          "11-rag-agentico#c0",
+          "07-graphrag#c0",
+          "08-drift-lazy#c0",
+          "08-drift-lazy#c1",
+          "10-reranking#c1",
+          "12-avaliacao#c0",
+          "12-avaliacao#c1"
+        ],
+        "parent": "c1-0",
+        "title": "DRIFT Search / GraphRAG / Global Search",
+        "summary": "O **LazyGraphRAG** ataca o custo pelo outro lado: nao gera **Community Reports** na ingestao. Um classificador estima a complexidade da pergunta e escolhe o caminho: pergunta factual simples vai para **Busca Hibrida** direta, pergunta sobre relacoes entre entidades vai para **Local Search** no grafo, pergunta tematica vai para **Global Search**, e pergunta comparativa multi-hop vai para **DRIFT Search**.",
+        "findings": [
+          "DRIFT Search search GraphRAG",
+          "DRIFT Search search LazyGraphRAG",
+          "Busca Hibrida direta DRIFT Search",
+          "DRIFT Search pergunta Global Search",
+          "DRIFT Search grafo Local Search"
+        ],
+        "rank": 37.0
+      },
+      {
+        "community_id": "c0-3",
+        "level": 0,
+        "members": [
+          "Event Store",
+          "Kafka",
+          "PostgreSQL",
+          "Saga"
+        ],
+        "chunk_ids": [
+          "02-event-sourcing#c0",
+          "02-event-sourcing#c1",
+          "03-outbox#c0",
+          "04-saga#c0",
+          "06-resiliencia#c0"
+        ],
+        "parent": "c1-0",
+        "title": "Kafka / PostgreSQL / Event Store",
+        "summary": "O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**. O **Event Store** normalmente e' um append-only sobre **PostgreSQL** ou um log distribuido como **Kafka**.",
+        "findings": [
+          "Event Store normalmente Kafka",
+          "Event Store normalmente PostgreSQL",
+          "Kafka log PostgreSQL",
+          "Kafka coreografada Saga"
+        ],
+        "rank": 16.0
+      },
+      {
+        "community_id": "c0-4",
+        "level": 0,
+        "members": [
+          "Recall",
+          "Reranker",
+          "nDCG"
+        ],
+        "chunk_ids": [
+          "10-reranking#c0",
+          "12-avaliacao#c0"
+        ],
+        "parent": "c1-0",
+        "title": "nDCG / Recall / Reranker",
+        "summary": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos. Avaliar recuperacao exige separar duas perguntas. **Recall@k** mede se o documento relevante entrou na lista; **nDCG@k** mede se ele entrou em posicao alta.",
+        "findings": [
+          "Recall nao nDCG",
+          "Recall aparece Reranker",
+          "Reranker aparece nDCG"
+        ],
+        "rank": 17.0
+      },
+      {
+        "community_id": "c0-5",
+        "level": 0,
+        "members": [
+          "Critico",
+          "Fundamentacao"
+        ],
+        "chunk_ids": [
+          "11-rag-agentico#c1",
+          "12-avaliacao#c0"
+        ],
+        "parent": "c1-8",
+        "title": "Critico / Fundamentacao",
+        "summary": "O **Critico** fecha o ciclo verificando fundamentacao e cobertura; quando reprova, o planejador amplia o top-k, troca de estrategia ou gera novas sub-perguntas. Para respostas geradas, a metrica pratica e' a **Fundamentacao**: a fracao de afirmacoes da resposta que pode ser rastreada ate um trecho citado.",
+        "findings": [
+          "Critico fecha Fundamentacao"
+        ],
+        "rank": 2.0
+      },
+      {
+        "community_id": "c0-6",
+        "level": 0,
+        "members": [
+          "BM25",
+          "RRF"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0"
+        ],
+        "parent": "c1-9",
+        "title": "BM25 / RRF",
+        "summary": "Por operar sobre posicao e nao sobre score, a **RRF** e' imune a escalas incomparaveis entre **BM25** e similaridade de cosseno. A perna lexical usa **BM25**, que acerta termos raros, codigos e nomes proprios exatos.",
+        "findings": [
+          "BM25 imune RRF"
+        ],
+        "rank": 2.0
+      },
+      {
+        "community_id": "c0-7",
+        "level": 0,
+        "members": [
+          "Combinacao Convexa"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0"
+        ],
+        "parent": "c1-10",
+        "title": "Combinacao Convexa",
+        "summary": "A alternativa e' a **Combinacao Convexa**, que normaliza os scores de cada perna e aplica um peso alpha.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-8",
+        "level": 0,
+        "members": [
+          "Decomposicao de Consulta"
+        ],
+        "chunk_ids": [
+          "11-rag-agentico#c0",
+          "11-rag-agentico#c1"
+        ],
+        "parent": "c1-11",
+        "title": "Decomposicao de Consulta",
+        "summary": "A **Decomposicao de Consulta** quebra a pergunta em sub-perguntas independentes, recuperadas em paralelo e sintetizadas ao final. A **Decomposicao de Consulta** quebra a pergunta em sub-perguntas independentes, recuperadas em paralelo e sintetizadas ao final.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-9",
+        "level": 0,
+        "members": [
+          "HNSW"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0"
+        ],
+        "parent": "c1-12",
+        "title": "HNSW",
+        "summary": "A perna densa usa embeddings sobre um indice **HNSW**, que acerta parafrase e sinonimo.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-10",
+        "level": 0,
+        "members": [
+          "LangGraph"
+        ],
+        "chunk_ids": [
+          "04-saga#c0"
+        ],
+        "parent": "c1-1",
+        "title": "LangGraph",
+        "summary": "Em sistemas agenticos, o orquestrador de agentes reproduz a variante orquestrada — o **LangGraph** e' essencialmente uma maquina de estados com compensacao manual.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-11",
+        "level": 0,
+        "members": [
+          "Latencia"
+        ],
+        "chunk_ids": [
+          "12-avaliacao#c0"
+        ],
+        "parent": "c1-2",
+        "title": "Latencia",
+        "summary": "Toda comparacao de estrategia precisa incluir custo e **Latencia**, nao so qualidade.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-12",
+        "level": 0,
+        "members": [
+          "MRR"
+        ],
+        "chunk_ids": [
+          "12-avaliacao#c0"
+        ],
+        "parent": "c1-3",
+        "title": "MRR",
+        "summary": "O **MRR** (Mean Reciprocal Rank) complementa quando existe uma unica resposta certa, medindo a posicao do primeiro acerto.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-13",
+        "level": 0,
+        "members": [
+          "Microsoft Research"
+        ],
+        "chunk_ids": [
+          "08-drift-lazy#c0",
+          "08-drift-lazy#c1"
+        ],
+        "parent": "c1-4",
+        "title": "Microsoft Research",
+        "summary": "O resultado publicado pela Microsoft Research reduz o custo de indexacao em cerca de tres ordens de grandeza mantendo a qualidade de resposta. O resultado publicado pela Microsoft Research reduz o custo de indexacao em cerca de tres ordens de grandeza mantendo a qualidade de resposta.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-14",
+        "level": 0,
+        "members": [
+          "Monolito Modular"
+        ],
+        "chunk_ids": [
+          "05-microservicos#c0"
+        ],
+        "parent": "c1-5",
+        "title": "Monolito Modular",
+        "summary": "O **Monolito Modular** entrega grande parte do beneficio de fronteira sem o custo de rede.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-15",
+        "level": 0,
+        "members": [
+          "Roteamento Adaptativo"
+        ],
+        "chunk_ids": [
+          "11-rag-agentico#c0",
+          "12-avaliacao#c1"
+        ],
+        "parent": "c1-6",
+        "title": "Roteamento Adaptativo",
+        "summary": "O componente central e' o **Roteamento Adaptativo**. O conjunto de avaliacao deve conter perguntas dos quatro tipos que o **Roteamento Adaptativo** distingue, senao o roteador e' medido apenas no caso facil.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c0-16",
+        "level": 0,
+        "members": [
+          "consistencia eventual"
+        ],
+        "chunk_ids": [
+          "01-cqrs#c0",
+          "05-microservicos#c0"
+        ],
+        "parent": "c1-7",
+        "title": "consistencia eventual",
+        "summary": "O custo e' operacional — rede, versionamento de contrato, observabilidade distribuida e consistencia eventual entram todos de uma vez. O preco e' a **consistencia eventual**: a projecao de leitura fica atras do modelo de escrita por alguns milissegundos ou segundos.",
+        "findings": [],
+        "rank": 0
+      }
+    ],
+    "1": [
+      {
+        "community_id": "c1-0",
+        "level": 1,
+        "members": [
+          "Bulkhead",
+          "Busca Hibrida",
+          "CQRS",
+          "Change Data Capture",
+          "Circuit Breaker",
+          "Community Reports",
+          "DRIFT Search",
+          "Event Sourcing",
+          "Event Store",
+          "Global Search",
+          "GraphRAG",
+          "Kafka",
+          "LLM",
+          "LazyGraphRAG",
+          "Leiden",
+          "Local Search",
+          "MMR",
+          "Microservicos",
+          "Ollama",
+          "Outbox",
+          "PostgreSQL",
+          "RAG",
+          "RAG Agentico",
+          "Recall",
+          "Reranker",
+          "Resiliencia",
+          "Saga",
+          "Strangler Fig",
+          "nDCG",
+          "retry",
+          "timeout"
+        ],
+        "chunk_ids": [
+          "05-microservicos#c1",
+          "06-resiliencia#c0",
+          "09-busca-hibrida#c0",
+          "11-rag-agentico#c0",
+          "01-cqrs#c0",
+          "01-cqrs#c1",
+          "03-outbox#c0",
+          "05-microservicos#c0",
+          "07-graphrag#c0",
+          "08-drift-lazy#c0",
+          "08-drift-lazy#c1",
+          "02-event-sourcing#c0",
+          "02-event-sourcing#c1",
+          "10-reranking#c1",
+          "12-avaliacao#c0",
+          "12-avaliacao#c1",
+          "04-saga#c0",
+          "10-reranking#c0"
+        ],
+        "parent": null,
+        "title": "DRIFT Search / nDCG / GraphRAG",
+        "summary": "Em pipelines de **RAG** agentico, os mesmos padroes se aplicam a chamadas de LLM: **timeout**, **Circuit Breaker** por provedor e degradacao graciosa para um modelo local via **Ollama**. Combinado com **timeout** agressivo e **retry** com backoff exponencial e jitter, forma o nucleo minimo de resiliencia em **Microservicos**.",
+        "findings": [
+          "Recall nao nDCG",
+          "CQRS banco Outbox",
+          "CQRS combina Event Sourcing",
+          "Event Store normalmente Kafka",
+          "Event Store normalmente PostgreSQL"
+        ],
+        "rank": 140.0
+      },
+      {
+        "community_id": "c1-1",
+        "level": 1,
+        "members": [
+          "LangGraph"
+        ],
+        "chunk_ids": [
+          "04-saga#c0"
+        ],
+        "parent": null,
+        "title": "LangGraph",
+        "summary": "Em sistemas agenticos, o orquestrador de agentes reproduz a variante orquestrada — o **LangGraph** e' essencialmente uma maquina de estados com compensacao manual.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-2",
+        "level": 1,
+        "members": [
+          "Latencia"
+        ],
+        "chunk_ids": [
+          "12-avaliacao#c0"
+        ],
+        "parent": null,
+        "title": "Latencia",
+        "summary": "Toda comparacao de estrategia precisa incluir custo e **Latencia**, nao so qualidade.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-3",
+        "level": 1,
+        "members": [
+          "MRR"
+        ],
+        "chunk_ids": [
+          "12-avaliacao#c0"
+        ],
+        "parent": null,
+        "title": "MRR",
+        "summary": "O **MRR** (Mean Reciprocal Rank) complementa quando existe uma unica resposta certa, medindo a posicao do primeiro acerto.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-4",
+        "level": 1,
+        "members": [
+          "Microsoft Research"
+        ],
+        "chunk_ids": [
+          "08-drift-lazy#c0",
+          "08-drift-lazy#c1"
+        ],
+        "parent": null,
+        "title": "Microsoft Research",
+        "summary": "O resultado publicado pela Microsoft Research reduz o custo de indexacao em cerca de tres ordens de grandeza mantendo a qualidade de resposta. O resultado publicado pela Microsoft Research reduz o custo de indexacao em cerca de tres ordens de grandeza mantendo a qualidade de resposta.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-5",
+        "level": 1,
+        "members": [
+          "Monolito Modular"
+        ],
+        "chunk_ids": [
+          "05-microservicos#c0"
+        ],
+        "parent": null,
+        "title": "Monolito Modular",
+        "summary": "O **Monolito Modular** entrega grande parte do beneficio de fronteira sem o custo de rede.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-6",
+        "level": 1,
+        "members": [
+          "Roteamento Adaptativo"
+        ],
+        "chunk_ids": [
+          "11-rag-agentico#c0",
+          "12-avaliacao#c1"
+        ],
+        "parent": null,
+        "title": "Roteamento Adaptativo",
+        "summary": "O componente central e' o **Roteamento Adaptativo**. O conjunto de avaliacao deve conter perguntas dos quatro tipos que o **Roteamento Adaptativo** distingue, senao o roteador e' medido apenas no caso facil.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-7",
+        "level": 1,
+        "members": [
+          "consistencia eventual"
+        ],
+        "chunk_ids": [
+          "01-cqrs#c0",
+          "05-microservicos#c0"
+        ],
+        "parent": null,
+        "title": "consistencia eventual",
+        "summary": "O custo e' operacional — rede, versionamento de contrato, observabilidade distribuida e consistencia eventual entram todos de uma vez. O preco e' a **consistencia eventual**: a projecao de leitura fica atras do modelo de escrita por alguns milissegundos ou segundos.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-8",
+        "level": 1,
+        "members": [
+          "Critico",
+          "Fundamentacao"
+        ],
+        "chunk_ids": [
+          "11-rag-agentico#c1",
+          "12-avaliacao#c0"
+        ],
+        "parent": null,
+        "title": "Critico / Fundamentacao",
+        "summary": "O **Critico** fecha o ciclo verificando fundamentacao e cobertura; quando reprova, o planejador amplia o top-k, troca de estrategia ou gera novas sub-perguntas. Para respostas geradas, a metrica pratica e' a **Fundamentacao**: a fracao de afirmacoes da resposta que pode ser rastreada ate um trecho citado.",
+        "findings": [
+          "Critico fecha Fundamentacao"
+        ],
+        "rank": 2.0
+      },
+      {
+        "community_id": "c1-9",
+        "level": 1,
+        "members": [
+          "BM25",
+          "RRF"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0"
+        ],
+        "parent": null,
+        "title": "BM25 / RRF",
+        "summary": "Por operar sobre posicao e nao sobre score, a **RRF** e' imune a escalas incomparaveis entre **BM25** e similaridade de cosseno. A perna lexical usa **BM25**, que acerta termos raros, codigos e nomes proprios exatos.",
+        "findings": [
+          "BM25 imune RRF"
+        ],
+        "rank": 2.0
+      },
+      {
+        "community_id": "c1-10",
+        "level": 1,
+        "members": [
+          "Combinacao Convexa"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0"
+        ],
+        "parent": null,
+        "title": "Combinacao Convexa",
+        "summary": "A alternativa e' a **Combinacao Convexa**, que normaliza os scores de cada perna e aplica um peso alpha.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-11",
+        "level": 1,
+        "members": [
+          "Decomposicao de Consulta"
+        ],
+        "chunk_ids": [
+          "11-rag-agentico#c0",
+          "11-rag-agentico#c1"
+        ],
+        "parent": null,
+        "title": "Decomposicao de Consulta",
+        "summary": "A **Decomposicao de Consulta** quebra a pergunta em sub-perguntas independentes, recuperadas em paralelo e sintetizadas ao final. A **Decomposicao de Consulta** quebra a pergunta em sub-perguntas independentes, recuperadas em paralelo e sintetizadas ao final.",
+        "findings": [],
+        "rank": 0
+      },
+      {
+        "community_id": "c1-12",
+        "level": 1,
+        "members": [
+          "HNSW"
+        ],
+        "chunk_ids": [
+          "09-busca-hibrida#c0"
+        ],
+        "parent": null,
+        "title": "HNSW",
+        "summary": "A perna densa usa embeddings sobre um indice **HNSW**, que acerta parafrase e sinonimo.",
+        "findings": [],
+        "rank": 0
+      }
+    ]
+  }
+}

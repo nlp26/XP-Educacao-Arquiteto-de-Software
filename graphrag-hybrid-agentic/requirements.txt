@@ -1,0 +1,18 @@
+# O nucleo roda apenas com a stdlib do Python 3.11+. Nada aqui e' obrigatorio.
+#
+#   python main.py "sua pergunta"        <- funciona sem instalar nada
+#
+# Instale so o que for usar:
+
+# --- LLM e embeddings reais (opcional) ---------------------------------------
+# Nao ha SDK aqui de proposito: `grag/llm.py` e `grag/embeddings.py` falam HTTP
+# puro com o Ollama e com a API da Anthropic via urllib.
+#   Ollama:     ollama pull qwen2.5:7b && ollama pull nomic-embed-text
+#               GRAG_LLM=ollama GRAG_EMBEDDINGS=ollama python main.py "..."
+#   Anthropic:  export ANTHROPIC_API_KEY=...
+#               GRAG_LLM=anthropic GRAG_MODEL=claude-sonnet-5 python main.py "..."
+
+# --- Exportar traces para um coletor OpenTelemetry (opcional) ----------------
+# opentelemetry-api>=1.27.0
+# opentelemetry-sdk>=1.27.0
+# opentelemetry-exporter-otlp-proto-grpc>=1.27.0

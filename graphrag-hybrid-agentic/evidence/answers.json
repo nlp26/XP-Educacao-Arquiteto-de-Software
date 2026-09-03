@@ -1,0 +1,627 @@
+[
+  {
+    "query": "O que e' CQRS e o que ele separa?",
+    "answer": "**CQRS** (Command Query Responsibility Segregation) separa o modelo de escrita do modelo de leitura. [1] E' exatamente esse trade-off que separa **GraphRAG** classico de **LazyGraphRAG**. [2] A separacao permite escalar leitura e escrita de forma independente, com bancos diferentes para cada lado. [1] Ele penaliza o candidato que e' muito parecido com o que ja foi selecionado, trocando um pouco de relevancia por cobertura. [3]",
+    "citations": [
+      {
+        "marker": 1,
+        "chunk_id": "01-cqrs#c0",
+        "title": "CQRS",
+        "score": 2.0333
+      },
+      {
+        "marker": 2,
+        "chunk_id": "12-avaliacao#c0",
+        "title": "Avaliacao de Recuperacao",
+        "score": 1.9416
+      },
+      {
+        "marker": 3,
+        "chunk_id": "10-reranking#c1",
+        "title": "Reranking e Diversidade",
+        "score": 1.513
+      }
+    ],
+    "plan": {
+      "kind": "factual",
+      "strategy": "hybrid",
+      "subqueries": [],
+      "reason": "pergunta pontual, sem sinal relacional",
+      "top_k": 3
+    },
+    "retrieval": {
+      "strategy": "hybrid",
+      "chunks": [
+        {
+          "chunk_id": "01-cqrs#c0",
+          "score": 2.0333,
+          "provenance": {
+            "legs": {
+              "bm25": 1,
+              "dense": 3
+            },
+            "rerank": {
+              "fusion": 1.0,
+              "coverage": 0.6666666666666666,
+              "proximity": 0.16666666666666666,
+              "entity": 0.0,
+              "graph": 0.0
+            }
+          }
+        },
+        {
+          "chunk_id": "12-avaliacao#c0",
+          "score": 1.9416,
+          "provenance": {
+            "legs": {
+              "bm25": 3,
+              "dense": 1
+            },
+            "rerank": {
+              "fusion": 1.0,
+              "coverage": 0.6666666666666666,
+              "proximity": 0.0136986301369863,
+              "entity": 0.0,
+              "graph": 0.0
+            }
+          }
+        },
+        {
+          "chunk_id": "10-reranking#c1",
+          "score": 1.513,
+          "provenance": {
+            "legs": {
+              "bm25": 6,
+              "dense": 6
+            },
+            "rerank": {
+              "fusion": 0.8962966665000748,
+              "coverage": 0.3333333333333333,
+              "proximity": 0.25,
+              "entity": 0.0,
+              "graph": 0.0
+            }
+          }
+        }
+      ],
+      "seed_entities": [],
+      "expanded_entities": [],
+      "communities": [],
+      "subqueries": [],
+      "steps": [
+        "pernas: bm25, dense",
+        "fusao: rrf",
+        "reranker + MMR"
+      ]
+    },
+    "critique": {
+      "groundedness": 1.0,
+      "coverage": 1.0,
+      "citations_valid": true,
+      "passed": true,
+      "gaps": []
+    },
+    "iterations": 1,
+    "history": [
+      {
+        "iteration": 1,
+        "strategy": "hybrid",
+        "top_k": 3,
+        "chunks": [
+          "01-cqrs#c0",
+          "12-avaliacao#c0",
+          "10-reranking#c1"
+        ],
+        "critique": {
+          "groundedness": 1.0,
+          "coverage": 1.0,
+          "citations_valid": true,
+          "passed": true,
+          "gaps": []
+        }
+      }
+    ]
+  },
+  {
+    "query": "Como o padrao Outbox garante que o evento chegue ao Kafka?",
+    "answer": "Em ambos os casos, o padrao **Outbox** garante que a escrita transacional e a publicacao do evento nao divirjam. [2] Sem o padrao, uma falha entre elas deixa o sistema inconsistente — o pedido existe mas o evento nunca chegou ao **Kafka**. [1] A solucao grava o evento numa tabela `outbox` dentro da mesma transacao do dado de negocio. [1] O padrao **Outbox** resolve a escrita dual: gravar no banco e publicar no broker sao duas operacoes que nao compartilham transacao. [1]",
+    "citations": [
+      {
+        "marker": 1,
+        "chunk_id": "03-outbox#c0",
+        "title": "Padrao Outbox",
+        "score": 0.0814
+      },
+      {
+        "marker": 2,
+        "chunk_id": "02-event-sourcing#c1",
+        "title": "Event Sourcing",
+        "score": 0.0807
+      }
+    ],
+    "plan": {
+      "kind": "relacional",
+      "strategy": "local_search",
+      "subqueries": [
+        "O que e' Outbox e qual o seu papel?",
+        "O que e' Kafka e qual o seu papel?",
+        "Qual a relacao entre Outbox e Kafka?"
+      ],
+      "reason": "2 entidades casadas no grafo",
+      "top_k": 3
+    },
+    "retrieval": {
+      "strategy": "local_search",
+      "chunks": [
+        {
+          "chunk_id": "03-outbox#c0",
+          "score": 0.0814,
+          "provenance": {
+            "legs": {
+              "main": 2,
+              "sub0": 1,
+              "sub1": 1,
+              "sub2": 1
+            }
+          }
+        },
+        {
+          "chunk_id": "02-event-sourcing#c1",
+          "score": 0.0807,
+          "provenance": {
+            "legs": {
+              "main": 1,
+              "sub0": 3,
+              "sub1": 3,
+              "sub2": 2
+            }
+          }
+        },
+        {
+          "chunk_id": "06-resiliencia#c0",
+          "score": 0.032,
+          "provenance": {
+            "legs": {
+              "sub1": 2,
+              "sub2": 3
+            }
+          }
+        }
+      ],
+      "seed_entities": [
+        "Outbox",
+        "Kafka"
+      ],
+      "expanded_entities": [
+        "Kafka",
+        "Outbox",
+        "PostgreSQL",
+        "CQRS",
+        "Event Store",
+        "Microservicos",
+        "Change Data Capture",
+        "Event Sourcing",
+        "retry",
+        "timeout",
+        "Saga",
+        "Resiliencia"
+      ],
+      "communities": [],
+      "subqueries": [
+        "O que e' Outbox e qual o seu papel?",
+        "O que e' Kafka e qual o seu papel?",
+        "Qual a relacao entre Outbox e Kafka?"
+      ],
+      "steps": [
+        "entity linking: Outbox, Kafka",
+        "PPR expandiu para 12 entidades",
+        "pernas: bm25, dense, graph",
+        "fusao: rrf",
+        "reranker + MMR",
+        "decomposicao: 3 sub-perguntas fundidas por RRF"
+      ]
+    },
+    "critique": {
+      "groundedness": 1.0,
+      "coverage": 1.0,
+      "citations_valid": true,
+      "passed": true,
+      "gaps": []
+    },
+    "iterations": 1,
+    "history": [
+      {
+        "iteration": 1,
+        "strategy": "local_search",
+        "top_k": 3,
+        "chunks": [
+          "03-outbox#c0",
+          "02-event-sourcing#c1",
+          "06-resiliencia#c0"
+        ],
+        "critique": {
+          "groundedness": 1.0,
+          "coverage": 1.0,
+          "citations_valid": true,
+          "passed": true,
+          "gaps": []
+        }
+      }
+    ]
+  },
+  {
+    "query": "Quais sao os temas centrais do corpus?",
+    "answer": "O **Global Search** ignora entidades individuais e faz map-reduce sobre os **Community Reports**, respondendo perguntas tematicas do tipo \"quais sao os temas centrais do corpus\". **GraphRAG** indexa um corpus construindo um grafo de conhecimento antes de responder. [1] Cada comunidade recebe um **Community Report** — um resumo gerado que descreve o tema daquele subgrafo. [1] Preserva a margem entre o primeiro e o segundo colocado, o que a **RRF** descarta, mas exige recalibrar alpha quando o corpus muda. [2]",
+    "citations": [
+      {
+        "marker": 1,
+        "chunk_id": "07-graphrag#c0",
+        "title": "GraphRAG",
+        "score": 3.0278
+      },
+      {
+        "marker": 2,
+        "chunk_id": "09-busca-hibrida#c0",
+        "title": "Busca Hibrida",
+        "score": 1.1451
+      }
+    ],
+    "plan": {
+      "kind": "tematica",
+      "strategy": "global_search",
+      "subqueries": [],
+      "reason": "marcadores de pergunta panoramica",
+      "top_k": 3
+    },
+    "retrieval": {
+      "strategy": "global_search",
+      "chunks": [
+        {
+          "chunk_id": "07-graphrag#c0",
+          "score": 3.0278,
+          "provenance": {
+            "legs": {
+              "bm25": 1,
+              "dense": 1,
+              "community": 3
+            },
+            "rerank": {
+              "fusion": 1.0,
+              "coverage": 1.0,
+              "proximity": 0.5,
+              "entity": 0.0,
+              "graph": 0.46833333333333327
+            }
+          }
+        },
+        {
+          "chunk_id": "09-busca-hibrida#c0",
+          "score": 1.1451,
+          "provenance": {
+            "legs": {
+              "bm25": 2,
+              "dense": 3
+            },
+            "rerank": {
+              "fusion": 0.5284610413062899,
+              "coverage": 0.3333333333333333,
+              "proximity": 0.25,
+              "entity": 0.0,
+              "graph": 0.0
+            }
+          }
+        },
+        {
+          "chunk_id": "12-avaliacao#c0",
+          "score": 0.8152,
+          "provenance": {
+            "legs": {
+              "dense": 7,
+              "community": 4
+            },
+            "rerank": {
+              "fusion": 0.48736803149104213,
+              "coverage": 0.0,
+              "proximity": 0.0,
+              "entity": 0.0,
+              "graph": 0.46833333333333327
+            }
+          }
+        }
+      ],
+      "seed_entities": [],
+      "expanded_entities": [],
+      "communities": [
+        "c0-0"
+      ],
+      "subqueries": [],
+      "steps": [
+        "MAP sobre 1 community reports (nivel 0)",
+        "REDUCE: text units de suporte fundidos com a perna hibrida",
+        "pernas: bm25, dense, community",
+        "fusao: rrf",
+        "reranker + MMR"
+      ]
+    },
+    "critique": {
+      "groundedness": 1.0,
+      "coverage": 1.0,
+      "citations_valid": true,
+      "passed": true,
+      "gaps": []
+    },
+    "iterations": 1,
+    "history": [
+      {
+        "iteration": 1,
+        "strategy": "global_search",
+        "top_k": 3,
+        "chunks": [
+          "07-graphrag#c0",
+          "09-busca-hibrida#c0",
+          "12-avaliacao#c0"
+        ],
+        "critique": {
+          "groundedness": 1.0,
+          "coverage": 1.0,
+          "citations_valid": true,
+          "passed": true,
+          "gaps": []
+        }
+      }
+    ]
+  },
+  {
+    "query": "Compare DRIFT Search e LazyGraphRAG quanto ao custo de indexacao",
+    "answer": "A escolha entre **DRIFT Search** e **LazyGraphRAG** e' uma escolha de onde pagar: indexacao cara e consulta barata, ou indexacao barata e consulta cara. [3] O **DRIFT Search** combina os dois modos do **GraphRAG** numa unica consulta. [1] O **LazyGraphRAG** ataca o custo pelo outro lado: nao gera **Community Reports** na ingestao. [1] O resultado publicado pela Microsoft Research reduz o custo de indexacao em cerca de tres ordens de grandeza mantendo a qualidade de resposta. [1]",
+    "citations": [
+      {
+        "marker": 1,
+        "chunk_id": "08-drift-lazy#c0",
+        "title": "DRIFT Search e LazyGraphRAG",
+        "score": 0.0814
+      },
+      {
+        "marker": 3,
+        "chunk_id": "08-drift-lazy#c1",
+        "title": "DRIFT Search e LazyGraphRAG",
+        "score": 0.0479
+      }
+    ],
+    "plan": {
+      "kind": "comparativa",
+      "strategy": "drift_search",
+      "subqueries": [
+        "O que e' DRIFT Search e qual o seu papel?",
+        "O que e' LazyGraphRAG e qual o seu papel?",
+        "Qual a relacao entre DRIFT Search e LazyGraphRAG?"
+      ],
+      "reason": "marcadores de contraste entre alternativas",
+      "top_k": 3
+    },
+    "retrieval": {
+      "strategy": "drift_search",
+      "chunks": [
+        {
+          "chunk_id": "08-drift-lazy#c0",
+          "score": 0.0814,
+          "provenance": {
+            "legs": {
+              "main": 1,
+              "sub0": 2,
+              "sub1": 1,
+              "sub2": 2
+            }
+          }
+        },
+        {
+          "chunk_id": "11-rag-agentico#c0",
+          "score": 0.065,
+          "provenance": {
+            "legs": {
+              "main": 2,
+              "sub0": 1,
+              "sub2": 1
+            }
+          }
+        },
+        {
+          "chunk_id": "08-drift-lazy#c1",
+          "score": 0.0479,
+          "provenance": {
+            "legs": {
+              "sub0": 3,
+              "sub1": 2,
+              "sub2": 3
+            }
+          }
+        }
+      ],
+      "seed_entities": [],
+      "expanded_entities": [],
+      "communities": [
+        "c0-2",
+        "c0-13",
+        "c0-0",
+        "c0-11",
+        "c0-14",
+        "c0-16"
+      ],
+      "subqueries": [
+        "O que e' DRIFT Search e qual o seu papel?",
+        "O que e' LazyGraphRAG e qual o seu papel?",
+        "Qual a relacao entre DRIFT Search e LazyGraphRAG?"
+      ],
+      "steps": [
+        "primer global sobre 6 comunidades",
+        "6 perguntas de acompanhamento em 2 niveis",
+        "fusao RRF de todas as rodadas + rerank + MMR",
+        "decomposicao: 3 sub-perguntas fundidas por RRF"
+      ]
+    },
+    "critique": {
+      "groundedness": 1.0,
+      "coverage": 1.0,
+      "citations_valid": true,
+      "passed": true,
+      "gaps": []
+    },
+    "iterations": 1,
+    "history": [
+      {
+        "iteration": 1,
+        "strategy": "drift_search",
+        "top_k": 3,
+        "chunks": [
+          "08-drift-lazy#c0",
+          "11-rag-agentico#c0",
+          "08-drift-lazy#c1"
+        ],
+        "critique": {
+          "groundedness": 1.0,
+          "coverage": 1.0,
+          "citations_valid": true,
+          "passed": true,
+          "gaps": []
+        }
+      }
+    ]
+  },
+  {
+    "query": "Qual metrica o reranker melhora e por que ele nao conserta recuperacao ruim?",
+    "answer": "O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos. [1] Recuperacao ruim nao e' consertada por reranqueamento. [1] Avaliar recuperacao exige separar duas perguntas. **Recall@k** mede se o documento relevante entrou na lista; **nDCG@k** mede se ele entrou em posicao alta. [2] Toda comparacao de estrategia precisa incluir custo e **Latencia**, nao so qualidade. [2]",
+    "citations": [
+      {
+        "marker": 1,
+        "chunk_id": "10-reranking#c0",
+        "title": "Reranking e Diversidade",
+        "score": 3.075
+      },
+      {
+        "marker": 2,
+        "chunk_id": "12-avaliacao#c0",
+        "title": "Avaliacao de Recuperacao",
+        "score": 2.702
+      }
+    ],
+    "plan": {
+      "kind": "relacional",
+      "strategy": "local_search",
+      "subqueries": [],
+      "reason": "1 entidades casadas no grafo",
+      "top_k": 3
+    },
+    "retrieval": {
+      "strategy": "local_search",
+      "chunks": [
+        {
+          "chunk_id": "10-reranking#c0",
+          "score": 3.075,
+          "provenance": {
+            "legs": {
+              "bm25": 1,
+              "dense": 1,
+              "graph": 2
+            },
+            "rerank": {
+              "fusion": 1.0,
+              "coverage": 0.625,
+              "proximity": 0.5,
+              "entity": 0.25,
+              "graph": 1.0
+            }
+          }
+        },
+        {
+          "chunk_id": "12-avaliacao#c0",
+          "score": 2.702,
+          "provenance": {
+            "legs": {
+              "bm25": 2,
+              "dense": 2,
+              "graph": 1
+            },
+            "rerank": {
+              "fusion": 0.9924920292090919,
+              "coverage": 0.5,
+              "proximity": 0.07142857142857142,
+              "entity": 0.3333333333333333,
+              "graph": 1.0
+            }
+          }
+        },
+        {
+          "chunk_id": "06-resiliencia#c0",
+          "score": 1.7214,
+          "provenance": {
+            "legs": {
+              "bm25": 12,
+              "dense": 6,
+              "graph": 3
+            },
+            "rerank": {
+              "fusion": 0.8863484984281034,
+              "coverage": 0.125,
+              "proximity": 0.25,
+              "entity": 0.5,
+              "graph": 0.1572297465028673
+            }
+          }
+        }
+      ],
+      "seed_entities": [
+        "Reranker"
+      ],
+      "expanded_entities": [
+        "nDCG",
+        "Recall",
+        "Reranker",
+        "LLM",
+        "RAG",
+        "timeout",
+        "Circuit Breaker",
+        "GraphRAG",
+        "Ollama",
+        "DRIFT Search",
+        "Leiden",
+        "Microservicos"
+      ],
+      "communities": [],
+      "subqueries": [],
+      "steps": [
+        "entity linking: Reranker",
+        "PPR expandiu para 12 entidades",
+        "pernas: bm25, dense, graph",
+        "fusao: rrf",
+        "reranker + MMR"
+      ]
+    },
+    "critique": {
+      "groundedness": 1.0,
+      "coverage": 1.0,
+      "citations_valid": true,
+      "passed": true,
+      "gaps": []
+    },
+    "iterations": 1,
+    "history": [
+      {
+        "iteration": 1,
+        "strategy": "local_search",
+        "top_k": 3,
+        "chunks": [
+          "10-reranking#c0",
+          "12-avaliacao#c0",
+          "06-resiliencia#c0"
+        ],
+        "critique": {
+          "groundedness": 1.0,
+          "coverage": 1.0,
+          "citations_valid": true,
+          "passed": true,
+          "gaps": []
+        }
+      }
+    ]
+  }
+]

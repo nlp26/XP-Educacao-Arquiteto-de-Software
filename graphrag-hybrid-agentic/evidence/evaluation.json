@@ -1,0 +1,1223 @@
+{
+  "k": 3,
+  "rows": [
+    {
+      "strategy": "bm25",
+      "recall@k": 0.7962962962962963,
+      "ndcg@k": 0.83611755007335,
+      "mrr": 0.9351851851851853,
+      "latency_ms": 0.04787411113385234,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.521,
+          "rr": 1.0
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.75,
+          "ndcg": 0.883,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.25,
+          "ndcg": 0.235,
+          "rr": 0.333
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.867,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 0.92,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "vector",
+      "recall@k": 0.8009259259259259,
+      "ndcg@k": 0.7530582657434851,
+      "mrr": 0.787037037037037,
+      "latency_ms": 0.4941922777687877,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 0.5,
+          "ndcg": 0.38,
+          "rr": 0.333
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.631,
+          "rr": 0.5
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.84,
+          "rr": 1.0
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.38,
+          "rr": 0.333
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.704,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.75,
+          "ndcg": 0.852,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.0,
+          "ndcg": 0.0,
+          "rr": 0.0
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.797,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 0.631,
+          "rr": 0.5
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "hybrid",
+      "recall@k": 0.7685185185185186,
+      "ndcg@k": 0.8016742384455705,
+      "mrr": 0.9166666666666666,
+      "latency_ms": 1.815058888850116,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.631,
+          "rr": 0.5
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.479,
+          "rr": 1.0
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.75,
+          "ndcg": 0.852,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.25,
+          "ndcg": 0.296,
+          "rr": 0.5
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.867,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 0.92,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "local_search",
+      "recall@k": 0.8240740740740741,
+      "ndcg@k": 0.8412055952598476,
+      "mrr": 0.9166666666666666,
+      "latency_ms": 3.2752291666737516,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.95,
+          "rr": 1.0
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.361,
+          "rr": 0.5
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.67,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.75,
+          "ndcg": 0.852,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.25,
+          "ndcg": 0.296,
+          "rr": 0.5
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.867,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "global_search",
+      "recall@k": 0.7546296296296297,
+      "ndcg@k": 0.7647213408125477,
+      "mrr": 0.9166666666666666,
+      "latency_ms": 2.438104222202734,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.631,
+          "rr": 0.5
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.631,
+          "rr": 0.5
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.479,
+          "rr": 1.0
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.617,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.25,
+          "ndcg": 0.235,
+          "rr": 1.0
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.867,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 0.92,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "drift_search",
+      "recall@k": 0.7500000000000001,
+      "ndcg@k": 0.7648884660152206,
+      "mrr": 0.8796296296296295,
+      "latency_ms": 28.968431055533173,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.95,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.361,
+          "rr": 0.5
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.38,
+          "rr": 0.333
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.75,
+          "ndcg": 0.852,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.25,
+          "ndcg": 0.148,
+          "rr": 0.5
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.333,
+          "ndcg": 0.532,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 0.92,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "lazy_graphrag",
+      "recall@k": 0.7824074074074074,
+      "ndcg@k": 0.8252513640092446,
+      "mrr": 0.9444444444444444,
+      "latency_ms": 3.165516777787363,
+      "llm_calls": 0.0,
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.86,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.361,
+          "rr": 0.5
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.75,
+          "ndcg": 0.852,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.469,
+          "rr": 1.0
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.867,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 0.92,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "agentic (roteado)",
+      "recall@k": 0.7824074074074074,
+      "ndcg@k": 0.7976207729597541,
+      "mrr": 0.9166666666666666,
+      "latency_ms": 29.661253722237134,
+      "llm_calls": 1.0,
+      "routing_accuracy": 0.9444444444444444,
+      "avg_iterations": 1.0,
+      "routing": [
+        {
+          "id": "q01",
+          "expected": "factual",
+          "predicted": "factual",
+          "strategy": "hybrid",
+          "correct": true
+        },
+        {
+          "id": "q02",
+          "expected": "factual",
+          "predicted": "factual",
+          "strategy": "hybrid",
+          "correct": true
+        },
+        {
+          "id": "q03",
+          "expected": "factual",
+          "predicted": "factual",
+          "strategy": "hybrid",
+          "correct": true
+        },
+        {
+          "id": "q04",
+          "expected": "factual",
+          "predicted": "factual",
+          "strategy": "hybrid",
+          "correct": true
+        },
+        {
+          "id": "q05",
+          "expected": "relacional",
+          "predicted": "relacional",
+          "strategy": "local_search",
+          "correct": true
+        },
+        {
+          "id": "q06",
+          "expected": "relacional",
+          "predicted": "relacional",
+          "strategy": "local_search",
+          "correct": true
+        },
+        {
+          "id": "q07",
+          "expected": "relacional",
+          "predicted": "relacional",
+          "strategy": "local_search",
+          "correct": true
+        },
+        {
+          "id": "q08",
+          "expected": "relacional",
+          "predicted": "factual",
+          "strategy": "hybrid",
+          "correct": false
+        },
+        {
+          "id": "q09",
+          "expected": "relacional",
+          "predicted": "relacional",
+          "strategy": "local_search",
+          "correct": true
+        },
+        {
+          "id": "q10",
+          "expected": "relacional",
+          "predicted": "relacional",
+          "strategy": "local_search",
+          "correct": true
+        },
+        {
+          "id": "q11",
+          "expected": "tematica",
+          "predicted": "tematica",
+          "strategy": "global_search",
+          "correct": true
+        },
+        {
+          "id": "q12",
+          "expected": "tematica",
+          "predicted": "tematica",
+          "strategy": "global_search",
+          "correct": true
+        },
+        {
+          "id": "q13",
+          "expected": "tematica",
+          "predicted": "tematica",
+          "strategy": "global_search",
+          "correct": true
+        },
+        {
+          "id": "q14",
+          "expected": "comparativa",
+          "predicted": "comparativa",
+          "strategy": "drift_search",
+          "correct": true
+        },
+        {
+          "id": "q15",
+          "expected": "comparativa",
+          "predicted": "comparativa",
+          "strategy": "drift_search",
+          "correct": true
+        },
+        {
+          "id": "q16",
+          "expected": "comparativa",
+          "predicted": "comparativa",
+          "strategy": "drift_search",
+          "correct": true
+        },
+        {
+          "id": "q17",
+          "expected": "comparativa",
+          "predicted": "comparativa",
+          "strategy": "drift_search",
+          "correct": true
+        },
+        {
+          "id": "q18",
+          "expected": "relacional",
+          "predicted": "relacional",
+          "strategy": "local_search",
+          "correct": true
+        }
+      ],
+      "per_query": [
+        {
+          "id": "q01",
+          "kind": "factual",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q02",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q03",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 0.631,
+          "rr": 0.5
+        },
+        {
+          "id": "q04",
+          "kind": "factual",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q05",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q06",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q07",
+          "kind": "relacional",
+          "recall": 0.667,
+          "ndcg": 0.361,
+          "rr": 0.5
+        },
+        {
+          "id": "q08",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.48,
+          "rr": 0.5
+        },
+        {
+          "id": "q09",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 0.95,
+          "rr": 1.0
+        },
+        {
+          "id": "q10",
+          "kind": "relacional",
+          "recall": 0.5,
+          "ndcg": 0.76,
+          "rr": 1.0
+        },
+        {
+          "id": "q11",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.765,
+          "rr": 1.0
+        },
+        {
+          "id": "q12",
+          "kind": "tematica",
+          "recall": 0.5,
+          "ndcg": 0.617,
+          "rr": 1.0
+        },
+        {
+          "id": "q13",
+          "kind": "tematica",
+          "recall": 0.25,
+          "ndcg": 0.235,
+          "rr": 1.0
+        },
+        {
+          "id": "q14",
+          "kind": "comparativa",
+          "recall": 0.667,
+          "ndcg": 0.797,
+          "rr": 1.0
+        },
+        {
+          "id": "q15",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q16",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q17",
+          "kind": "comparativa",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        },
+        {
+          "id": "q18",
+          "kind": "relacional",
+          "recall": 1.0,
+          "ndcg": 1.0,
+          "rr": 1.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1498 @@
+{
+  "counters": {
+    "index.reports": 30.0,
+    "llm.calls": 1.0,
+    "llm.offline_calls": 1.0
+  },
+  "traces": [
+    {
+      "name": "index.build",
+      "span_id": "0801ab2be6b6",
+      "parent_id": null,
+      "duration_ms": 71.285,
+      "status": "ok",
+      "attributes": {
+        "backend": "offline",
+        "corpus": "/home/user/xp-educacao-arquiteto-de-software/graphrag-hybrid-agentic/corpus",
+        "chunks": 19,
+        "llm_calls": 0.0
+      },
+      "events": [],
+      "children": [
+        {
+          "name": "index.load_and_chunk",
+          "span_id": "c05b71e6635d",
+          "parent_id": "0801ab2be6b6",
+          "duration_ms": 9.075,
+          "status": "ok",
+          "attributes": {},
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "index.lexical",
+          "span_id": "7904573181e1",
+          "parent_id": "0801ab2be6b6",
+          "duration_ms": 0.762,
+          "status": "ok",
+          "attributes": {},
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "index.dense",
+          "span_id": "68ac2cf76567",
+          "parent_id": "0801ab2be6b6",
+          "duration_ms": 16.161,
+          "status": "ok",
+          "attributes": {
+            "backend": "hashing"
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "index.extraction",
+          "span_id": "e8d18186462a",
+          "parent_id": "0801ab2be6b6",
+          "duration_ms": 39.269,
+          "status": "ok",
+          "attributes": {
+            "llm": false,
+            "merged_entities": 8,
+            "entities": 45,
+            "relations": 54
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "index.communities",
+          "span_id": "4ff820ad8603",
+          "parent_id": "0801ab2be6b6",
+          "duration_ms": 0.441,
+          "status": "ok",
+          "attributes": {},
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "index.community_reports",
+          "span_id": "e56d2e42c1a4",
+          "parent_id": "0801ab2be6b6",
+          "duration_ms": 2.197,
+          "status": "ok",
+          "attributes": {
+            "reports": 30
+          },
+          "events": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "agent.answer",
+      "span_id": "f17235a766bf",
+      "parent_id": null,
+      "duration_ms": 5.211,
+      "status": "ok",
+      "attributes": {
+        "query": "O que e' CQRS e o que ele separa?",
+        "iterations": 1,
+        "resolved": true
+      },
+      "events": [],
+      "children": [
+        {
+          "name": "agent.plan",
+          "span_id": "80b84dd5cdf6",
+          "parent_id": "f17235a766bf",
+          "duration_ms": 0.448,
+          "status": "ok",
+          "attributes": {
+            "kind": "factual",
+            "strategy": "hybrid"
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "agent.iteration",
+          "span_id": "a4267032bf8e",
+          "parent_id": "f17235a766bf",
+          "duration_ms": 4.719,
+          "status": "ok",
+          "attributes": {
+            "n": 1,
+            "strategy": "hybrid"
+          },
+          "events": [],
+          "children": [
+            {
+              "name": "retrieval.hybrid",
+              "span_id": "d0e892895d29",
+              "parent_id": "a4267032bf8e",
+              "duration_ms": 2.203,
+              "status": "ok",
+              "attributes": {
+                "fusion": "rrf",
+                "top_k": 3,
+                "candidates": 16,
+                "legs": "bm25,dense"
+              },
+              "events": [],
+              "children": []
+            },
+            {
+              "name": "agent.synthesize",
+              "span_id": "342e997eb0fc",
+              "parent_id": "a4267032bf8e",
+              "duration_ms": 2.053,
+              "status": "ok",
+              "attributes": {
+                "chunks": 3
+              },
+              "events": [],
+              "children": []
+            },
+            {
+              "name": "agent.critique",
+              "span_id": "4f99f0507348",
+              "parent_id": "a4267032bf8e",
+              "duration_ms": 0.224,
+              "status": "ok",
+              "attributes": {
+                "groundedness": 1.0,
+                "coverage": 1.0,
+                "passed": true
+              },
+              "events": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "agent.answer",
+      "span_id": "9b482a5071b1",
+      "parent_id": null,
+      "duration_ms": 15.939,
+      "status": "ok",
+      "attributes": {
+        "query": "Como o padrao Outbox garante que o evento chegue ao Kafka?",
+        "iterations": 1,
+        "resolved": true
+      },
+      "events": [],
+      "children": [
+        {
+          "name": "agent.plan",
+          "span_id": "bd9b84a8c9f9",
+          "parent_id": "9b482a5071b1",
+          "duration_ms": 0.238,
+          "status": "ok",
+          "attributes": {
+            "kind": "relacional",
+            "strategy": "local_search"
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "agent.iteration",
+          "span_id": "6ab5dd805229",
+          "parent_id": "9b482a5071b1",
+          "duration_ms": 15.673,
+          "status": "ok",
+          "attributes": {
+            "n": 1,
+            "strategy": "local_search"
+          },
+          "events": [],
+          "children": [
+            {
+              "name": "retrieval.local_search",
+              "span_id": "28cda6ab9e03",
+              "parent_id": "6ab5dd805229",
+              "duration_ms": 4.332,
+              "status": "ok",
+              "attributes": {
+                "seeds": "Outbox,Kafka",
+                "expanded": 12
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.hybrid",
+                  "span_id": "dfa23bd9bffc",
+                  "parent_id": "28cda6ab9e03",
+                  "duration_ms": 2.569,
+                  "status": "ok",
+                  "attributes": {
+                    "fusion": "rrf",
+                    "top_k": 3,
+                    "candidates": 16,
+                    "legs": "bm25,dense,graph"
+                  },
+                  "events": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "retrieval.local_search",
+              "span_id": "8691189d3f7c",
+              "parent_id": "6ab5dd805229",
+              "duration_ms": 3.301,
+              "status": "ok",
+              "attributes": {
+                "seeds": "Outbox",
+                "expanded": 12
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.hybrid",
+                  "span_id": "7e262325623b",
+                  "parent_id": "8691189d3f7c",
+                  "duration_ms": 1.758,
+                  "status": "ok",
+                  "attributes": {
+                    "fusion": "rrf",
+                    "top_k": 3,
+                    "candidates": 14,
+                    "legs": "bm25,dense,graph"
+                  },
+                  "events": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "retrieval.local_search",
+              "span_id": "99b7c12124a7",
+              "parent_id": "6ab5dd805229",
+              "duration_ms": 2.894,
+              "status": "ok",
+              "attributes": {
+                "seeds": "Kafka",
+                "expanded": 12
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.hybrid",
+                  "span_id": "0697e202e524",
+                  "parent_id": "99b7c12124a7",
+                  "duration_ms": 1.497,
+                  "status": "ok",
+                  "attributes": {
+                    "fusion": "rrf",
+                    "top_k": 3,
+                    "candidates": 12,
+                    "legs": "bm25,dense,graph"
+                  },
+                  "events": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "retrieval.local_search",
+              "span_id": "ed90e243417c",
+              "parent_id": "6ab5dd805229",
+              "duration_ms": 3.159,
+              "status": "ok",
+              "attributes": {
+                "seeds": "Outbox,Kafka",
+                "expanded": 12
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.hybrid",
+                  "span_id": "b3e2f4a583fa",
+                  "parent_id": "ed90e243417c",
+                  "duration_ms": 1.617,
+                  "status": "ok",
+                  "attributes": {
+                    "fusion": "rrf",
+                    "top_k": 3,
+                    "candidates": 13,
+                    "legs": "bm25,dense,graph"
+                  },
+                  "events": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "agent.synthesize",
+              "span_id": "c3fbf514f4f6",
+              "parent_id": "6ab5dd805229",
+              "duration_ms": 1.452,
+              "status": "ok",
+              "attributes": {
+                "chunks": 3
+              },
+              "events": [],
+              "children": []
+            },
+            {
+              "name": "agent.critique",
+              "span_id": "23e5feac3b6b",
+              "parent_id": "6ab5dd805229",
+              "duration_ms": 0.255,
+              "status": "ok",
+              "attributes": {
+                "out_of_corpus": "chegue",
+                "groundedness": 1.0,
+                "coverage": 1.0,
+                "passed": true
+              },
+              "events": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "agent.answer",
+      "span_id": "b98f86729fc4",
+      "parent_id": null,
+      "duration_ms": 4.567,
+      "status": "ok",
+      "attributes": {
+        "query": "Quais sao os temas centrais do corpus?",
+        "iterations": 1,
+        "resolved": true
+      },
+      "events": [],
+      "children": [
+        {
+          "name": "agent.plan",
+          "span_id": "94c9b6743a8a",
+          "parent_id": "b98f86729fc4",
+          "duration_ms": 0.219,
+          "status": "ok",
+          "attributes": {
+            "kind": "tematica",
+            "strategy": "global_search"
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "agent.iteration",
+          "span_id": "53c811a29fd8",
+          "parent_id": "b98f86729fc4",
+          "duration_ms": 4.319,
+          "status": "ok",
+          "attributes": {
+            "n": 1,
+            "strategy": "global_search"
+          },
+          "events": [],
+          "children": [
+            {
+              "name": "retrieval.global_search",
+              "span_id": "db1d90ae295e",
+              "parent_id": "53c811a29fd8",
+              "duration_ms": 2.173,
+              "status": "ok",
+              "attributes": {
+                "level": 0,
+                "communities": 1
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.hybrid",
+                  "span_id": "0c695145650c",
+                  "parent_id": "db1d90ae295e",
+                  "duration_ms": 1.897,
+                  "status": "ok",
+                  "attributes": {
+                    "fusion": "rrf",
+                    "top_k": 3,
+                    "candidates": 17,
+                    "legs": "bm25,dense,community"
+                  },
+                  "events": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "agent.synthesize",
+              "span_id": "06a281b1edf9",
+              "parent_id": "53c811a29fd8",
+              "duration_ms": 1.659,
+              "status": "ok",
+              "attributes": {
+                "chunks": 3
+              },
+              "events": [],
+              "children": []
+            },
+            {
+              "name": "agent.critique",
+              "span_id": "ab280b3d176c",
+              "parent_id": "53c811a29fd8",
+              "duration_ms": 0.275,
+              "status": "ok",
+              "attributes": {
+                "groundedness": 1.0,
+                "coverage": 1.0,
+                "passed": true
+              },
+              "events": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "agent.answer",
+      "span_id": "525fad1e8f0c",
+      "parent_id": null,
+      "duration_ms": 112.059,
+      "status": "ok",
+      "attributes": {
+        "query": "Compare DRIFT Search e LazyGraphRAG quanto ao custo de indexacao",
+        "iterations": 1,
+        "resolved": true
+      },
+      "events": [],
+      "children": [
+        {
+          "name": "agent.plan",
+          "span_id": "c7257224192f",
+          "parent_id": "525fad1e8f0c",
+          "duration_ms": 0.237,
+          "status": "ok",
+          "attributes": {
+            "kind": "comparativa",
+            "strategy": "drift_search"
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "agent.iteration",
+          "span_id": "2a46912cd542",
+          "parent_id": "525fad1e8f0c",
+          "duration_ms": 111.793,
+          "status": "ok",
+          "attributes": {
+            "n": 1,
+            "strategy": "drift_search"
+          },
+          "events": [],
+          "children": [
+            {
+              "name": "retrieval.drift",
+              "span_id": "4a1b21981b93",
+              "parent_id": "2a46912cd542",
+              "duration_ms": 31.94,
+              "status": "ok",
+              "attributes": {
+                "depth": 2,
+                "breadth": 3,
+                "followups": 6
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.global_search",
+                  "span_id": "f46947d2d195",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 3.177,
+                  "status": "ok",
+                  "attributes": {
+                    "level": 0,
+                    "communities": 6
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "4761bd14b8bc",
+                      "parent_id": "f46947d2d195",
+                      "duration_ms": 2.367,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 18,
+                        "legs": "bm25,dense,community"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "8f5bca099458",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 4.375,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "3a9602c0e4ee",
+                      "parent_id": "8f5bca099458",
+                      "duration_ms": 2.995,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 19,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "98e582657284",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 4.29,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,RAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "d7d363451999",
+                      "parent_id": "98e582657284",
+                      "duration_ms": 2.871,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 19,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "00a77dd587f4",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 4.359,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "Busca Hibrida,DRIFT Search,LazyGraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "25c4188ab61b",
+                      "parent_id": "00a77dd587f4",
+                      "duration_ms": 2.98,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 18,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "b0affb0cab15",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 4.688,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG,LLM",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "d2be73fdcc22",
+                      "parent_id": "b0affb0cab15",
+                      "duration_ms": 2.923,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 17,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "fac3ea0f4513",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 4.96,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG,RAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "578c4f9f032c",
+                      "parent_id": "fac3ea0f4513",
+                      "duration_ms": 3.277,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 18,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "b66fddf9bbf6",
+                  "parent_id": "4a1b21981b93",
+                  "duration_ms": 4.783,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "Busca Hibrida,DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "2aa07b55f3db",
+                      "parent_id": "b66fddf9bbf6",
+                      "duration_ms": 3.37,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 18,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "retrieval.drift",
+              "span_id": "98c2fcd52e1a",
+              "parent_id": "2a46912cd542",
+              "duration_ms": 27.152,
+              "status": "ok",
+              "attributes": {
+                "depth": 2,
+                "breadth": 3,
+                "followups": 6
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.global_search",
+                  "span_id": "cfd423c45dfa",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 1.658,
+                  "status": "ok",
+                  "attributes": {
+                    "level": 0,
+                    "communities": 1
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "9859f6e3c38d",
+                      "parent_id": "cfd423c45dfa",
+                      "duration_ms": 1.375,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 11,
+                        "legs": "bm25,dense,community"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "a5a1f5be0f5a",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 3.569,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "c699537aba40",
+                      "parent_id": "a5a1f5be0f5a",
+                      "duration_ms": 2.15,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "21c1b23cf8cf",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 3.338,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,RAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "d65f6bdbe273",
+                      "parent_id": "21c1b23cf8cf",
+                      "duration_ms": 1.878,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "a15a856430ec",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 3.816,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "030e6e8ed7b1",
+                      "parent_id": "a15a856430ec",
+                      "duration_ms": 2.219,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 16,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "c1dc27f5dcab",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 5.844,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,GraphRAG,LLM",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "62dd5bccc331",
+                      "parent_id": "c1dc27f5dcab",
+                      "duration_ms": 3.78,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "46a9119417f2",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 4.025,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,GraphRAG,RAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "36e7267fc462",
+                      "parent_id": "46a9119417f2",
+                      "duration_ms": 2.205,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "edfae5c716bb",
+                  "parent_id": "98c2fcd52e1a",
+                  "duration_ms": 3.75,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "aa17b99e24a0",
+                      "parent_id": "edfae5c716bb",
+                      "duration_ms": 2.321,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "retrieval.drift",
+              "span_id": "0012a26bd8ea",
+              "parent_id": "2a46912cd542",
+              "duration_ms": 25.477,
+              "status": "ok",
+              "attributes": {
+                "depth": 2,
+                "breadth": 3,
+                "followups": 6
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.global_search",
+                  "span_id": "915469484c38",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 1.986,
+                  "status": "ok",
+                  "attributes": {
+                    "level": 0,
+                    "communities": 1
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "17d6f37c7128",
+                      "parent_id": "915469484c38",
+                      "duration_ms": 1.66,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 15,
+                        "legs": "bm25,dense,community"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "4fb5a2e635d3",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 3.668,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "bb256120ecd8",
+                      "parent_id": "4fb5a2e635d3",
+                      "duration_ms": 2.222,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 16,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "fc1e43df5cef",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 3.693,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "cf40f8944598",
+                      "parent_id": "fc1e43df5cef",
+                      "duration_ms": 2.248,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 17,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "adfa0d0f09a0",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 3.743,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "LazyGraphRAG,Local Search",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "a5f6e9a1e9c5",
+                      "parent_id": "adfa0d0f09a0",
+                      "duration_ms": 2.303,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 17,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "46712ce5ebd3",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 3.576,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "13b5f4576536",
+                      "parent_id": "46712ce5ebd3",
+                      "duration_ms": 2.131,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "c14de1e6da39",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 3.576,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "72987e64e261",
+                      "parent_id": "c14de1e6da39",
+                      "duration_ms": 2.126,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "96485bd34b82",
+                  "parent_id": "0012a26bd8ea",
+                  "duration_ms": 4.087,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "LazyGraphRAG,Local Search,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "aa5aa919cbdb",
+                      "parent_id": "96485bd34b82",
+                      "duration_ms": 2.136,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "retrieval.drift",
+              "span_id": "f9bbcdb7716e",
+              "parent_id": "2a46912cd542",
+              "duration_ms": 25.366,
+              "status": "ok",
+              "attributes": {
+                "depth": 2,
+                "breadth": 3,
+                "followups": 6
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.global_search",
+                  "span_id": "013d4ce565ef",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 1.897,
+                  "status": "ok",
+                  "attributes": {
+                    "level": 0,
+                    "communities": 1
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "45bddfce856e",
+                      "parent_id": "013d4ce565ef",
+                      "duration_ms": 1.609,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 11,
+                        "legs": "bm25,dense,community"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "3ca976feb6ff",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 3.53,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "d43e6773d341",
+                      "parent_id": "3ca976feb6ff",
+                      "duration_ms": 2.12,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 14,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "4d225b3d563e",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 3.947,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,RAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "020eb4004c9b",
+                      "parent_id": "4d225b3d563e",
+                      "duration_ms": 2.544,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "f263d5017d53",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 3.791,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "Busca Hibrida,DRIFT Search,LazyGraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "2ef66a4e86ab",
+                      "parent_id": "f263d5017d53",
+                      "duration_ms": 2.417,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 16,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "611ab7b7458d",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 3.533,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG,LLM",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "aff91d735c71",
+                      "parent_id": "611ab7b7458d",
+                      "duration_ms": 2.143,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 12,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "7d7149396af1",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 3.618,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "DRIFT Search,LazyGraphRAG,GraphRAG,RAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "406239654532",
+                      "parent_id": "7d7149396af1",
+                      "duration_ms": 2.216,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 13,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "retrieval.local_search",
+                  "span_id": "e2734de67730",
+                  "parent_id": "f9bbcdb7716e",
+                  "duration_ms": 3.734,
+                  "status": "ok",
+                  "attributes": {
+                    "seeds": "Busca Hibrida,DRIFT Search,LazyGraphRAG,GraphRAG",
+                    "expanded": 12
+                  },
+                  "events": [],
+                  "children": [
+                    {
+                      "name": "retrieval.hybrid",
+                      "span_id": "34128e0addf9",
+                      "parent_id": "e2734de67730",
+                      "duration_ms": 2.324,
+                      "status": "ok",
+                      "attributes": {
+                        "fusion": "rrf",
+                        "top_k": 3,
+                        "candidates": 14,
+                        "legs": "bm25,dense,graph"
+                      },
+                      "events": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "agent.synthesize",
+              "span_id": "c78d610f9726",
+              "parent_id": "2a46912cd542",
+              "duration_ms": 1.281,
+              "status": "ok",
+              "attributes": {
+                "chunks": 3
+              },
+              "events": [],
+              "children": []
+            },
+            {
+              "name": "agent.critique",
+              "span_id": "106ee072b6d1",
+              "parent_id": "2a46912cd542",
+              "duration_ms": 0.235,
+              "status": "ok",
+              "attributes": {
+                "out_of_corpus": "compare,quanto",
+                "groundedness": 1.0,
+                "coverage": 1.0,
+                "passed": true
+              },
+              "events": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "agent.answer",
+      "span_id": "11bf30a82fa9",
+      "parent_id": null,
+      "duration_ms": 5.999,
+      "status": "ok",
+      "attributes": {
+        "query": "Qual metrica o reranker melhora e por que ele nao conserta recuperacao ruim?",
+        "iterations": 1,
+        "resolved": true
+      },
+      "events": [],
+      "children": [
+        {
+          "name": "agent.plan",
+          "span_id": "929873ae418e",
+          "parent_id": "11bf30a82fa9",
+          "duration_ms": 0.266,
+          "status": "ok",
+          "attributes": {
+            "kind": "relacional",
+            "strategy": "local_search"
+          },
+          "events": [],
+          "children": []
+        },
+        {
+          "name": "agent.iteration",
+          "span_id": "bcc7a75c985c",
+          "parent_id": "11bf30a82fa9",
+          "duration_ms": 5.702,
+          "status": "ok",
+          "attributes": {
+            "n": 1,
+            "strategy": "local_search"
+          },
+          "events": [],
+          "children": [
+            {
+              "name": "retrieval.local_search",
+              "span_id": "667d1a63751d",
+              "parent_id": "bcc7a75c985c",
+              "duration_ms": 3.686,
+              "status": "ok",
+              "attributes": {
+                "seeds": "Reranker",
+                "expanded": 12
+              },
+              "events": [],
+              "children": [
+                {
+                  "name": "retrieval.hybrid",
+                  "span_id": "5221aa6ee3a7",
+                  "parent_id": "667d1a63751d",
+                  "duration_ms": 2.298,
+                  "status": "ok",
+                  "attributes": {
+                    "fusion": "rrf",
+                    "top_k": 3,
+                    "candidates": 17,
+                    "legs": "bm25,dense,graph"
+                  },
+                  "events": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "agent.synthesize",
+              "span_id": "8047b68d4519",
+              "parent_id": "bcc7a75c985c",
+              "duration_ms": 1.592,
+              "status": "ok",
+              "attributes": {
+                "chunks": 3
+              },
+              "events": [],
+              "children": []
+            },
+            {
+              "name": "agent.critique",
+              "span_id": "db6bb079b0f3",
+              "parent_id": "bcc7a75c985c",
+              "duration_ms": 0.242,
+              "status": "ok",
+              "attributes": {
+                "out_of_corpus": "melhora,conserta",
+                "groundedness": 1.0,
+                "coverage": 1.0,
+                "passed": true
+              },
+              "events": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

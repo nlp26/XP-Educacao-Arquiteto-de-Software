@@ -1,0 +1,137 @@
+==============================================================================
+SUITE DE EVIDENCIAS — GraphRAG + Busca Hibrida Agentica
+inicio: 2026-09-03T03:18:10.955253+00:00
+config: llm=offline embeddings=hashing fusao=rrf mmr_lambda=0.85 top_k=3
+==============================================================================
+
+[1] INDEXACAO
+    documentos ............ 12
+    text units ............ 19
+    entidades ............. 45
+    relacoes .............. 54
+    comunidades ........... {0: 17, 1: 13}
+    custo de indexacao .... {'llm_calls_indexing': 0.0, 'chunks': 19.0, 'community_reports': 30.0}
+    tempo ................. 71 ms
+
+    Comunidades de nivel 0 (top 5 por grau agregado):
+      [c0-2] DRIFT Search / GraphRAG / Global Search
+          membros: Busca Hibrida, Community Reports, DRIFT Search, Global Search, GraphRAG, LazyGraphRAG, Local Search
+      [c0-0] LLM / RAG / timeout
+          membros: Bulkhead, Circuit Breaker, LLM, Leiden, MMR, Ollama, RAG, RAG Agentico
+      [c0-1] Microservicos / Outbox / CQRS
+          membros: CQRS, Change Data Capture, Event Sourcing, Microservicos, Outbox, Resiliencia, Strangler Fig, retry
+      [c0-4] nDCG / Recall / Reranker
+          membros: Recall, Reranker, nDCG
+      [c0-3] Kafka / PostgreSQL / Event Store
+          membros: Event Store, Kafka, PostgreSQL, Saga
+
+[2] CONSULTAS AGENTICAS (plan -> retrieve -> synthesize -> critique)
+
+------------------------------------------------------------------------------
+    [factual] O que e' CQRS e o que ele separa?
+    plano ......... tipo=factual estrategia=hybrid (pergunta pontual, sem sinal relacional)
+    passo ......... pernas: bm25, dense
+    passo ......... fusao: rrf
+    passo ......... reranker + MMR
+    resposta ...... **CQRS** (Command Query Responsibility Segregation) separa o modelo de escrita do modelo de leitura. [1] E' exatamente esse trade-off que separa **GraphRAG** classico de **LazyGraphRAG**. [2] A separacao permite escalar leitura e escrita de forma independente, com bancos diferentes para cada lado. [1] Ele penaliza o candidato que e' muito parecido com o que ja foi selecionado, trocando um pouco de
+    fontes ........ 01-cqrs#c0, 12-avaliacao#c0, 10-reranking#c1
+    critico ....... APROVADO fundamentacao=1.00 cobertura=1.00 iteracoes=1
+
+------------------------------------------------------------------------------
+    [relacional] Como o padrao Outbox garante que o evento chegue ao Kafka?
+    plano ......... tipo=relacional estrategia=local_search (2 entidades casadas no grafo)
+                    └─ O que e' Outbox e qual o seu papel?
+                    └─ O que e' Kafka e qual o seu papel?
+                    └─ Qual a relacao entre Outbox e Kafka?
+    passo ......... entity linking: Outbox, Kafka
+    passo ......... PPR expandiu para 12 entidades
+    passo ......... pernas: bm25, dense, graph
+    passo ......... fusao: rrf
+    passo ......... reranker + MMR
+    passo ......... decomposicao: 3 sub-perguntas fundidas por RRF
+    resposta ...... Em ambos os casos, o padrao **Outbox** garante que a escrita transacional e a publicacao do evento nao divirjam. [2] Sem o padrao, uma falha entre elas deixa o sistema inconsistente — o pedido existe mas o evento nunca chegou ao **Kafka**. [1] A solucao grava o evento numa tabela `outbox` dentro da mesma transacao do dado de negocio. [1] O padrao **Outbox** resolve a escrita dual: gravar no banco 
+    fontes ........ 03-outbox#c0, 02-event-sourcing#c1
+    critico ....... APROVADO fundamentacao=1.00 cobertura=1.00 iteracoes=1
+
+------------------------------------------------------------------------------
+    [tematica] Quais sao os temas centrais do corpus?
+    plano ......... tipo=tematica estrategia=global_search (marcadores de pergunta panoramica)
+    passo ......... MAP sobre 1 community reports (nivel 0)
+    passo ......... REDUCE: text units de suporte fundidos com a perna hibrida
+    passo ......... pernas: bm25, dense, community
+    passo ......... fusao: rrf
+    passo ......... reranker + MMR
+    resposta ...... O **Global Search** ignora entidades individuais e faz map-reduce sobre os **Community Reports**, respondendo perguntas tematicas do tipo "quais sao os temas centrais do corpus". **GraphRAG** indexa um corpus construindo um grafo de conhecimento antes de responder. [1] Cada comunidade recebe um **Community Report** — um resumo gerado que descreve o tema daquele subgrafo. [1] Preserva a margem entr
+    fontes ........ 07-graphrag#c0, 09-busca-hibrida#c0
+    critico ....... APROVADO fundamentacao=1.00 cobertura=1.00 iteracoes=1
+
+------------------------------------------------------------------------------
+    [comparativa] Compare DRIFT Search e LazyGraphRAG quanto ao custo de indexacao
+    plano ......... tipo=comparativa estrategia=drift_search (marcadores de contraste entre alternativas)
+                    └─ O que e' DRIFT Search e qual o seu papel?
+                    └─ O que e' LazyGraphRAG e qual o seu papel?
+                    └─ Qual a relacao entre DRIFT Search e LazyGraphRAG?
+    passo ......... primer global sobre 6 comunidades
+    passo ......... 6 perguntas de acompanhamento em 2 niveis
+    passo ......... fusao RRF de todas as rodadas + rerank + MMR
+    passo ......... decomposicao: 3 sub-perguntas fundidas por RRF
+    resposta ...... A escolha entre **DRIFT Search** e **LazyGraphRAG** e' uma escolha de onde pagar: indexacao cara e consulta barata, ou indexacao barata e consulta cara. [3] O **DRIFT Search** combina os dois modos do **GraphRAG** numa unica consulta. [1] O **LazyGraphRAG** ataca o custo pelo outro lado: nao gera **Community Reports** na ingestao. [1] O resultado publicado pela Microsoft Research reduz o custo de 
+    fontes ........ 08-drift-lazy#c0, 08-drift-lazy#c1
+    critico ....... APROVADO fundamentacao=1.00 cobertura=1.00 iteracoes=1
+
+------------------------------------------------------------------------------
+    [multi-hop] Qual metrica o reranker melhora e por que ele nao conserta recuperacao ruim?
+    plano ......... tipo=relacional estrategia=local_search (1 entidades casadas no grafo)
+    passo ......... entity linking: Reranker
+    passo ......... PPR expandiu para 12 entidades
+    passo ......... pernas: bm25, dense, graph
+    passo ......... fusao: rrf
+    passo ......... reranker + MMR
+    resposta ...... O ganho tipico do **Reranker** aparece em **nDCG**, nao em **Recall**: ele reordena o que a recuperacao ja trouxe e nao consegue resgatar o documento que ficou fora dos candidatos. [1] Recuperacao ruim nao e' consertada por reranqueamento. [1] Avaliar recuperacao exige separar duas perguntas. **Recall@k** mede se o documento relevante entrou na lista; **nDCG@k** mede se ele entrou em posicao alta.
+    fontes ........ 10-reranking#c0, 12-avaliacao#c0
+    critico ....... APROVADO fundamentacao=1.00 cobertura=1.00 iteracoes=1
+
+[3] AVALIACAO COMPARATIVA
+
+| Estrategia | Recall@3 | nDCG@3 | MRR | Latencia (ms) | Chamadas LLM/consulta |
+|---|---:|---:|---:|---:|---:|
+| bm25 | 0.796 | 0.836 | 0.935 | 0.0 | 0.0 |
+| vector | 0.801 | 0.753 | 0.787 | 0.5 | 0.0 |
+| hybrid | 0.769 | 0.802 | 0.917 | 1.8 | 0.0 |
+| local_search | 0.824 | 0.841 | 0.917 | 3.3 | 0.0 |
+| global_search | 0.755 | 0.765 | 0.917 | 2.4 | 0.0 |
+| drift_search | 0.750 | 0.765 | 0.880 | 29.0 | 0.0 |
+| lazy_graphrag | 0.782 | 0.825 | 0.944 | 3.2 | 0.0 |
+| agentic (roteado) | 0.782 | 0.798 | 0.917 | 29.7 | 1.0 |
+
+nDCG@3 por tipo de pergunta
+
+| Estrategia | factual | relacional | tematica | comparativa |
+|---|---:|---:|---:|---:|
+| bm25 | 1.000 | 0.769 | 0.628 | 0.947 |
+| vector | 0.753 | 0.794 | 0.519 | 0.857 |
+| hybrid | 0.848 | 0.763 | 0.638 | 0.947 |
+| local_search | 0.988 | 0.773 | 0.638 | 0.967 |
+| global_search | 0.756 | 0.763 | 0.539 | 0.947 |
+| drift_search | 0.857 | 0.732 | 0.588 | 0.863 |
+| lazy_graphrag | 0.940 | 0.746 | 0.695 | 0.947 |
+| agentic (roteado) | 0.848 | 0.793 | 0.539 | 0.949 |
+
+    acuracia do roteador: 94.4% | iteracoes medias: 1.00
+
+[4] VARREDURA DE HIPERPARAMETROS (lambda do MMR x metodo de fusao)
+    | rrf | 0.5 | 0.771 | 0.808 | 0.749 |
+    | rrf | 0.7 | 0.802 | 0.837 | 0.821 |
+    | rrf | 0.85 | 0.802 | 0.841 | 0.825 |
+    | rrf | 1.0 | 0.806 | 0.841 | 0.825 |
+    | convex | 0.5 | 0.780 | 0.798 | 0.793 |
+    | convex | 0.7 | 0.801 | 0.834 | 0.819 |
+    | convex | 0.85 | 0.804 | 0.837 | 0.822 |
+    | convex | 1.0 | 0.806 | 0.848 | 0.822 |
+
+[5] OBSERVABILIDADE — 105 spans exportados para traces.json
+    contadores no momento da exportacao: {'index.reports': 30.0, 'llm.calls': 1.0, 'llm.offline_calls': 1.0}
+    spans totais desta execucao (com avaliacao e varredura): 1634
+
+Artefatos escritos em /home/user/xp-educacao-arquiteto-de-software/graphrag-hybrid-agentic/evidence/
+fim: 2026-09-03T03:18:13.604695+00:00  (duracao 2.6s)
